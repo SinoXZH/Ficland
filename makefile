@@ -1,13 +1,16 @@
 CC := g++
+
 TARGET := Ficland
 
 SRCS := $(wildcard *.cpp)
 OBJS := $(patsubst %.cpp,%.o,$(SRCS))
 
-$(TARGET) : $(OBJS)
-	$(CC) $(OBJS) -o $(TARGET)
+all : $(OBJS)
+	$(CC) -o $(TARGET) $(OBJS)
 
-$(OBJS): %.o:%.cpp
-	echo OBJS: $(OBJS)
-	$(CC) -c $(CFLAGS) $< -o $@
-    
+%.o : %.cpp
+	$(CC) -c $< -o $@
+
+clean :
+	rm -f $(OBJS)
+	rm -f $(TARGET)
