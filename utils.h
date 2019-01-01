@@ -4,10 +4,6 @@
 #include <string>
 using namespace std;
 
-typedef enum{
-    LOG_INFO,
-    LOG_ERROR
-}ENUM_LOG_LEVEL;
 
 string Input();
 

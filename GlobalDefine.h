@@ -2,6 +2,11 @@
 #define __GLOBAL_DEFINE_H__
 
 
+typedef enum{
+    LOG_INFO,
+    LOG_ERROR
+}ENUM_LOG_LEVEL;
+
 const int RET_SUCCESS = 0;
 const int RET_COMMON_ERR = -1;
 const int RET_EXIT = 1;

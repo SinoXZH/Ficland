@@ -41,3 +41,26 @@ void Format(std::string& srcStr, const char* formatStr, ...)
 
     srcStr = temp;
 }
+
+void PrintLog(ENUM_LOG_LEVEL level, const char* formatStr, ...)
+{
+    char temp[MAX_STRING_LEN] = {0};
+    va_list argList;
+    va_start(argList, formatStr);
+    vsprintf(temp, formatStr, argList);
+    va_end(argList);
+
+    string log;
+    if (level == LOG_INFO)
+    {
+        log = "[INFO] ";
+    }
+    else if (level == LOG_ERROR)
+    {
+        log = "[ERROR] ";
+    }
+
+    log += temp;
+
+    cout << log << endl;
+}
