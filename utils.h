@@ -2,13 +2,22 @@
 #define __UTILS_H__
 
 #include <string>
+using namespace std;
 
+typedef enum{
+    LOG_INFO,
+    LOG_ERROR
+}ENUM_LOG_LEVEL;
 
-std::string Input();
+string Input();
 
 void Output(const char* str, ...);
 
-void PrintLog();
+void Output(const string& str);
+
+void Format(string& srcStr, const char* formatStr, ...);
+
+void PrintLog(ENUM_LOG_LEVEL level, const char* formatStr, ...);
 
 
 

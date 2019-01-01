@@ -1,5 +1,4 @@
 #include "FicLandApp.h"
-#include "GlobalDefine.h"
 
 int main()
 {
@@ -7,23 +6,23 @@ int main()
 
     FicApp app;
     ret = app.Init();
-    if (ret != RET_SUCCESS)
+    if (ret != 0)
     {
-        return APP_ERR_EXIT;
+        return -1;
     }
 
     while (true)
     {
         ret = app.Run();
-        if (ret == RET_EXIT)
+        if (ret == 1)
         {
             break;
         }
-        else if (ret != RET_SUCCESS)
+        else if (ret != 0)
         {
-            return APP_ERR_EXIT;
+            return -1;
         }
     }
 
-    return APP_SUCC_EXIT;
+    return 0;
 }
