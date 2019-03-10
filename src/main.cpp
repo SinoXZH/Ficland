@@ -1,8 +1,15 @@
-#include <iostream>
-using namespace std;
+#include "FicApp.h"
 
 int main()
 {
-    cout << "Welcome to Ficland!" << endl;
+    FicApp app;
+    if (app.Init() == false){
+        return -1;
+    }
+
+    if (app.Run() == false){
+        return -1;
+    }
+
     return 0;
 }
