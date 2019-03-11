@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{b2063b31-2de4-4524-a5b2-8d596e6a5c6c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Archive.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="FicApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Archive.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="FicApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

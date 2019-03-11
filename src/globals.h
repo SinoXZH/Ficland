@@ -4,7 +4,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
+#ifndef WINDOWS_CPP
 #include <unistd.h>
+#else
+#include <direct.h>
+#endif
+
 using namespace std;
 
 void Output(const string& str)
@@ -57,7 +63,7 @@ void OutputCmdList(const vector<string>& vec)
 string InputCmdList(const vector<string>& vec)
 {
     string input = Input();
-    int index = atoi(input.c_str());
+    unsigned int index = atoi(input.c_str());
     if (index >= vec.size())
     {
         return "";
@@ -71,7 +77,11 @@ string InputCmdList(const vector<string>& vec)
 string GetAppDir()
 {
     char buffer[MAXPATH];
+#ifndef WINDOWS_CPP
     getcwd(buffer, MAXPATH);
+#else
+    _getcwd(buffer, _MAX_PATH);
+#endif
 
     return string(buffer);
 }
