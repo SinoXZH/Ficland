@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <stdarg.h>
 
 #ifndef WINDOWS_CPP
 #include <unistd.h>
@@ -84,6 +85,64 @@ string GetAppDir()
 #endif
 
     return string(buffer);
+}
+
+const unsigned int FORMAT_STRING_BUFFER_SIZE = 16 * 1024;
+
+inline void Format(string& strout, const char* pszOutput, ...)
+{
+    // code.clean overlength variable(1k) 2017/1/24 l00309883/lishiquan
+    char* pBuf = (char*)malloc(FORMAT_STRING_BUFFER_SIZE);
+    if (NULL == pBuf)
+    {
+        strout = "";
+        return;
+    }
+    memset(pBuf, 0, FORMAT_STRING_BUFFER_SIZE);
+
+    va_list vaArgumentList;
+    va_start(vaArgumentList, pszOutput);
+#ifdef WINDOWS_CPP
+    vsprintf_s(pBuf, FORMAT_STRING_BUFFER_SIZE, pszOutput, vaArgumentList);
+#else
+    vsprintf(pBuf, pszOutput, vaArgumentList);
+#endif
+    va_end(vaArgumentList);
+    strout = pBuf;
+
+    if (NULL != pBuf)
+    {
+        free(pBuf);
+        pBuf = NULL;
+    }
+}
+
+inline void AppendFormat(string& strout, const char* pszOutput, ...)
+{
+    // code.clean overlength variable(1k) 2017/1/24 l00309883/lishiquan
+    char* pBuf = (char*)malloc(FORMAT_STRING_BUFFER_SIZE);
+    if (NULL == pBuf)
+    {
+        strout = "";
+        return;
+    }
+    memset(pBuf, 0, FORMAT_STRING_BUFFER_SIZE);
+
+    va_list vaArgumentList;
+    va_start(vaArgumentList, pszOutput);
+#ifdef WINDOWS_CPP
+    vsprintf_s(pBuf, FORMAT_STRING_BUFFER_SIZE, pszOutput, vaArgumentList);
+#else
+    vsprintf(pBuf, pszOutput, vaArgumentList);
+#endif
+    va_end(vaArgumentList);
+    strout += pBuf;
+
+    if (NULL != pBuf)
+    {
+        free(pBuf);
+        pBuf = NULL;
+    }
 }
 
 #endif
