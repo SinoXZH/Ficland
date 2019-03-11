@@ -15,8 +15,9 @@ FicApp::~FicApp()
 bool FicApp::Init()
 {
     Archive::arcRootDir = GetAppDir();
-    Archive::arcRootDir = Archive::arcRootDir.substr(0, Archive::arcRootDir.find_last_of('/'));
-    Archive::arcRootDir += "/archive";
+    Archive::arcRootDir = Archive::arcRootDir.substr(0, Archive::arcRootDir.find_last_of(PATH_SEPARATOR));
+    Archive::arcRootDir += PATH_SEPARATOR;
+    Archive::arcRootDir += "archive";
     string info = "Archive directory: ";
     info += Archive::arcRootDir;
     PrintInfo(info);
@@ -60,7 +61,8 @@ bool FicApp::Design()
 {
     Output("Now we design the world.");
 
-    curArchive.arcDir = Archive::arcRootDir += "/base";
+    curArchive.arcDir = Archive::arcRootDir + PATH_SEPARATOR;
+    curArchive.arcDir += "base";
 
     vector<string> cmdList;
     cmdList.push_back("quit");
@@ -88,6 +90,10 @@ bool FicApp::Design()
 bool FicApp::CreateNewEmptyMatrixFile()
 {
     Output("Please input empty file name:");
-    string input = Input();
-    return curArchive.CreateNewEmptyMatrixFile(input);
+    string fileName = Input();
+    Output("Please input matrix width:");
+    int w = InputUint();
+    Output("Please input matrix height:");
+    int h = InputUint();
+    return curArchive.CreateNewEmptyMatrixFile(fileName, w, h);
 }

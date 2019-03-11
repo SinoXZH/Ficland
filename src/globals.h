@@ -14,135 +14,37 @@
 
 using namespace std;
 
-void Output(const string& str)
-{
-    cout << str << endl;
-}
-
-string Input()
-{
-    string ret;
-    cin >> ret;
-    return ret;
-}
-
-void PrintErr(const string& errmsg)
-{
-    string str = "[ERROR] ";
-    str += errmsg;
-    Output(str);
-}
-
-void PrintInfo(const string& msg)
-{
-    string str = "[INFO] ";
-    str += msg;
-    Output(str);
-}
-
-void OutputCmdList(const vector<string>& vec)
-{
-    if (vec.empty()){
-        return;
-    }
-
-    Output("Please choose options below:");
-
-    string cmdList;
-    int index = 0;
-    for (vector<string>::const_iterator iter = vec.begin(); iter != vec.end(); ++iter){
-        cmdList += to_string(index);
-        cmdList += '.';
-        cmdList += *iter;
-        cmdList += ' ';
-        ++index;
-    }
-
-    Output(cmdList);
-}
-
-string InputCmdList(const vector<string>& vec)
-{
-    string input = Input();
-    unsigned int index = atoi(input.c_str());
-    if (index >= vec.size())
-    {
-        return "";
-    }
-
-    return vec[index];
-}
+//global variables
+#ifndef WINDOWS_CPP
+const char PATH_SEPARATOR = '/';
+#else
+const char PATH_SEPARATOR = '\\';
+#endif
 
 #define MAXPATH 260
 
-string GetAppDir()
-{
-    char buffer[MAXPATH];
-#ifndef WINDOWS_CPP
-    getcwd(buffer, MAXPATH);
-#else
-    _getcwd(buffer, _MAX_PATH);
-#endif
+const unsigned int MAX_STRING_SIZE = 16 * 1024;
 
-    return string(buffer);
-}
 
-const unsigned int FORMAT_STRING_BUFFER_SIZE = 16 * 1024;
+//global functions
+void Output(const string& str);
 
-inline void Format(string& strout, const char* pszOutput, ...)
-{
-    // code.clean overlength variable(1k) 2017/1/24 l00309883/lishiquan
-    char* pBuf = (char*)malloc(FORMAT_STRING_BUFFER_SIZE);
-    if (NULL == pBuf)
-    {
-        strout = "";
-        return;
-    }
-    memset(pBuf, 0, FORMAT_STRING_BUFFER_SIZE);
+string Input();
 
-    va_list vaArgumentList;
-    va_start(vaArgumentList, pszOutput);
-#ifdef WINDOWS_CPP
-    vsprintf_s(pBuf, FORMAT_STRING_BUFFER_SIZE, pszOutput, vaArgumentList);
-#else
-    vsprintf(pBuf, pszOutput, vaArgumentList);
-#endif
-    va_end(vaArgumentList);
-    strout = pBuf;
+unsigned int InputUint();
 
-    if (NULL != pBuf)
-    {
-        free(pBuf);
-        pBuf = NULL;
-    }
-}
+void PrintErr(const string& errmsg);
 
-inline void AppendFormat(string& strout, const char* pszOutput, ...)
-{
-    // code.clean overlength variable(1k) 2017/1/24 l00309883/lishiquan
-    char* pBuf = (char*)malloc(FORMAT_STRING_BUFFER_SIZE);
-    if (NULL == pBuf)
-    {
-        strout = "";
-        return;
-    }
-    memset(pBuf, 0, FORMAT_STRING_BUFFER_SIZE);
+void PrintInfo(const string& msg);
 
-    va_list vaArgumentList;
-    va_start(vaArgumentList, pszOutput);
-#ifdef WINDOWS_CPP
-    vsprintf_s(pBuf, FORMAT_STRING_BUFFER_SIZE, pszOutput, vaArgumentList);
-#else
-    vsprintf(pBuf, pszOutput, vaArgumentList);
-#endif
-    va_end(vaArgumentList);
-    strout += pBuf;
+void OutputCmdList(const vector<string>& vec);
 
-    if (NULL != pBuf)
-    {
-        free(pBuf);
-        pBuf = NULL;
-    }
-}
+string InputCmdList(const vector<string>& vec);
+
+string GetAppDir();
+
+void FormatString(string& str, const char* format, ...);
+
+void AppendFormatString(string& str, const char* format, ...);
 
 #endif
