@@ -91,6 +91,7 @@ bool FicApp::CreateNewEmptyMatrixFile()
 {
     Output("Please input empty file name:");
     string fileName = Input();
+    fileName += ".csv";
     Output("Please input matrix width:");
     int w = InputUint();
     Output("Please input matrix height:");

@@ -27,7 +27,8 @@ bool DotMatrix::CreateNewEmptyFile(unsigned int width, unsigned int height)
 
     for (unsigned int h = 0; h < height; ++h) {
         for (unsigned int w = 0; w < width; ++w) {
-            content += '.';
+            content += PLAIN_DOT_CHAR;
+            content += ',';
         }
         content += '\n';
     }

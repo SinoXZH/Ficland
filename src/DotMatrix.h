@@ -4,6 +4,8 @@
 #include <string>
 using namespace std;
 
+const char PLAIN_DOT_CHAR = '+';
+
 class DotMatrix {
 public:
     DotMatrix();
