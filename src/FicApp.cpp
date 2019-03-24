@@ -67,6 +67,7 @@ bool FicApp::Design()
     vector<string> cmdList;
     cmdList.push_back("quit");
     cmdList.push_back("create new empty matrix file");
+    cmdList.push_back("load matrix file");
     
     while (true) {
         
@@ -79,7 +80,12 @@ bool FicApp::Design()
             if (CreateNewEmptyMatrixFile() == false){
                 return false;
             }
-        }else{
+        }else if (input == "load matrix file") {
+            if (LoadMatrixFile() == false) {
+                return false;
+            }
+        }
+        else{
             PrintErr("unknown input.");
         }
     }
@@ -97,4 +103,12 @@ bool FicApp::CreateNewEmptyMatrixFile()
     Output("Please input matrix height:");
     int h = InputUint();
     return curArchive.CreateNewEmptyMatrixFile(fileName, w, h);
+}
+
+bool FicApp::LoadMatrixFile()
+{
+    Output("Please input file name:");
+    string fileName = Input();
+    fileName += ".csv";
+    return curArchive.LoadMatrixFile(fileName);
 }

@@ -2,6 +2,8 @@
 #include <fstream>
 
 DotMatrix::DotMatrix()
+: matrixWidth(0)
+, matrixHeight(0)
 {
 
 }
@@ -36,6 +38,60 @@ bool DotMatrix::CreateNewEmptyFile(unsigned int width, unsigned int height)
     ofs << content;
 
     ofs.close();
+
+    return true;
+}
+
+bool DotMatrix::LoadMatrixFile()
+{
+    string info;
+
+    ifstream ifs;
+    ifs.open(filePath.c_str(), ios_base::in);
+    if (!ifs.is_open()) {
+        FormatString(info, "Load file failed: %s", filePath.c_str());
+        PrintErr(info);
+        return false;
+    }
+
+    string content;
+    string line;
+    while (!ifs.eof()) {
+        ifs >> line;
+        content += line;
+        content += '\n';
+    }
+    ifs.close();
+
+    matrixWidth = 0;
+    matrixHeight = 0;
+    unsigned int curWidth = 1;
+
+    for (string::iterator iter = content.begin(); iter != content.end(); ++iter) {
+        if (*iter == ',') {
+            ++curWidth;
+            matrixWidth = max(matrixWidth, curWidth);
+        }
+        else if (*iter == '\n') {
+            ++matrixHeight;
+            if (curWidth != matrixWidth) {
+                FormatString(info, "current width(%d) not equal to matrix width(%d)", 
+                curWidth, matrixWidth);
+                PrintInfo(info);
+                return false;
+            }
+            
+            curWidth = 1;
+        }
+    }
+
+    if (matrixHeight > 1) {
+        --matrixHeight;
+    }
+
+    FormatString(info, "Load file: %s, matrix width: %d, matrix height: %d", 
+    filePath.c_str(), matrixWidth, matrixHeight);
+    PrintInfo(info);
 
     return true;
 }

@@ -22,3 +22,12 @@ bool Archive::CreateNewEmptyMatrixFile(const string& fileName, unsigned int widt
 
     return dotMatrix.CreateNewEmptyFile(width, height);
 }
+
+bool Archive::LoadMatrixFile(const string& fileName)
+{
+    dotMatrix.filePath = arcDir;
+    dotMatrix.filePath += PATH_SEPARATOR;
+    dotMatrix.filePath += fileName;
+
+    return dotMatrix.LoadMatrixFile();
+}

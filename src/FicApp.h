@@ -15,6 +15,7 @@ public:
 protected:
     bool Design();
     bool CreateNewEmptyMatrixFile();
+    bool LoadMatrixFile();
 
 private:
     Archive curArchive;
