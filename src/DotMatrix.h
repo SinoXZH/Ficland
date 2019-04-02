@@ -2,9 +2,9 @@
 #define __DOT_MATRIX_H__
 
 #include "globals.h"
-#include "CoDot.h"
+#include "CoordinaryPoint.h"
 
-const char PLAIN_DOT_CHAR = '+';
+const string PLAIN_DOT_CHAR = "+";
 
 class DotMatrix {
 public:
@@ -21,7 +21,7 @@ public:
 
     unsigned int matrixWidth;
     unsigned int matrixHeight;
-    vector<vector<CoDot> > coordinaryMatrix;
+    vector<vector<CoordinaryPoint> > coordinaryMatrix;
 };
 
 

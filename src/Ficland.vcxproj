@@ -119,6 +119,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Archive.cpp" />
+    <ClCompile Include="CoordinaryPoint.cpp" />
+    <ClCompile Include="CsvParser.cpp" />
     <ClCompile Include="DotMatrix.cpp" />
     <ClCompile Include="FicApp.cpp" />
     <ClCompile Include="globals.cpp" />
@@ -126,6 +128,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archive.h" />
+    <ClInclude Include="CoordinaryPoint.h" />
+    <ClInclude Include="CsvParser.h" />
     <ClInclude Include="DotMatrix.h" />
     <ClInclude Include="FicApp.h" />
     <ClInclude Include="globals.h" />

@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <stdarg.h>
+#include <fstream>
 
 #ifndef WINDOWS_CPP
 #include <unistd.h>

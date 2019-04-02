@@ -15,6 +15,18 @@
     <ClCompile Include="main.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="DotMatrix.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="globals.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="CsvParser.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="CoordinaryPoint.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archive.h">
@@ -24,6 +36,15 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="globals.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="DotMatrix.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="CsvParser.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="CoordinaryPoint.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
