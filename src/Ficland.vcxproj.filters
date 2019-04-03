@@ -15,9 +15,6 @@
     <ClCompile Include="main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="DotMatrix.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="globals.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -25,6 +22,21 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="CoordinaryPoint.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldMap.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Settlement.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="XmlManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,13 +50,25 @@
     <ClInclude Include="globals.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="DotMatrix.h">
-      <Filter>src</Filter>
-    </ClInclude>
     <ClInclude Include="CsvParser.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="CoordinaryPoint.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldMap.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Settlement.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="XmlManager.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,7 @@
 #ifndef __ARCHIVE_H__
 #define __ARCHIVE_H__
 
-#include "DotMatrix.h"
+#include "WorldMap.h"
 
 #include <string>
 using namespace std;
@@ -19,7 +19,7 @@ public:
     static string arcRootDir;
     string arcDir;
 
-    DotMatrix dotMatrix;
+    WorldMap worldMap;
 };
 
 

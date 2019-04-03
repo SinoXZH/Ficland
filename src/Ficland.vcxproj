@@ -119,20 +119,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Archive.cpp" />
+    <ClCompile Include="Character.cpp" />
     <ClCompile Include="CoordinaryPoint.cpp" />
     <ClCompile Include="CsvParser.cpp" />
-    <ClCompile Include="DotMatrix.cpp" />
+    <ClCompile Include="Settlement.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
+    <ClCompile Include="WorldMap.cpp" />
     <ClCompile Include="FicApp.cpp" />
     <ClCompile Include="globals.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="XmlManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archive.h" />
+    <ClInclude Include="Character.h" />
     <ClInclude Include="CoordinaryPoint.h" />
     <ClInclude Include="CsvParser.h" />
-    <ClInclude Include="DotMatrix.h" />
+    <ClInclude Include="Settlement.h" />
+    <ClInclude Include="tinyxml2.h" />
+    <ClInclude Include="WorldMap.h" />
     <ClInclude Include="FicApp.h" />
     <ClInclude Include="globals.h" />
+    <ClInclude Include="XmlManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

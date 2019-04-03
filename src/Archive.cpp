@@ -16,18 +16,18 @@ Archive::~Archive()
 
 bool Archive::CreateNewEmptyMatrixFile(const string& fileName, unsigned int width, unsigned int height)
 {
-    dotMatrix.filePath = arcDir;
-    dotMatrix.filePath += PATH_SEPARATOR;
-    dotMatrix.filePath += fileName;
+    worldMap.filePath = arcDir;
+    worldMap.filePath += PATH_SEPARATOR;
+    worldMap.filePath += fileName;
 
-    return dotMatrix.CreateNewEmptyFile(width, height);
+    return worldMap.CreateNewEmptyFile(width, height);
 }
 
 bool Archive::LoadMatrixFile(const string& fileName)
 {
-    dotMatrix.filePath = arcDir;
-    dotMatrix.filePath += PATH_SEPARATOR;
-    dotMatrix.filePath += fileName;
+    worldMap.filePath = arcDir;
+    worldMap.filePath += PATH_SEPARATOR;
+    worldMap.filePath += fileName;
 
-    return dotMatrix.LoadMatrixFile();
+    return worldMap.LoadMatrixFile();
 }
