@@ -15,10 +15,16 @@ public:
 
     bool LoadMatrixFile();
 
+    void SetCsvFilePath(const string& filepath) { csvFilePath = filepath; }
+    void SetXmlFilePath(const string& filepath) { xmlFilePath = filepath; }
+
+    bool SaveWorldToXml();
+
 protected:
 
-public:
-    string filePath;
+protected:
+    string csvFilePath;
+    string xmlFilePath;
 
     unsigned int matrixWidth;
     unsigned int matrixHeight;

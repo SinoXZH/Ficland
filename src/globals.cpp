@@ -1,5 +1,6 @@
 #include "globals.h"
 
+
 void Output(const string& str)
 {
     cout << str << endl;
@@ -126,4 +127,17 @@ void AppendFormatString(string& str, const char* format, ...)
         free(buffer);
         buffer = NULL;
     }
+}
+
+bool isFileExists(const string& filepath)
+{
+    if (filepath.empty()) {
+        return false;
+    }
+
+#ifdef WINDOWS_CPP
+    return (_access(filepath.c_str(), 0) == 0);
+#else
+    return (access(filepath.c_str(), 0) == 0);
+#endif
 }

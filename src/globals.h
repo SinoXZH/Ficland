@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 #include <stdarg.h>
 #include <fstream>
 
@@ -11,6 +12,7 @@
 #include <unistd.h>
 #else
 #include <direct.h>
+#include <corecrt_io.h>
 #endif
 
 using namespace std;
@@ -48,4 +50,7 @@ void FormatString(string& str, const char* format, ...);
 
 void AppendFormatString(string& str, const char* format, ...);
 
+bool isFileExists(const string& filepath);
+
 #endif
+
