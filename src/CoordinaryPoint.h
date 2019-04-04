@@ -13,21 +13,13 @@ const string CITY_DOT_CHAR = "A";
 const string TOWN_DOT_CHAR = "B";
 
 typedef enum {
-    LANDFORM_WATER,
+    LANDFORM_WATER = 0,
     LANDFORM_PLAIN,
     LANDFORM_MOUNTAIN,
     LANDFORM_FOREST,
     LANDFORM_DESERT
 
 }LANDFORM_ENUM;
-
-typedef enum {
-    SETTLEMENT_NONE,
-    SETTLEMENT_SUPER_CITY,
-    SETTLEMENT_CITY,
-    SETTLEMENT_TOWN
-
-}SETTLEMENT_ENUM;
 
 class CoordinaryPoint{
 public:
@@ -42,11 +34,15 @@ public:
     void SetEastNeighbor(CoordinaryPoint* coPoint) { eastNeighbor = coPoint; }
     void SetWestNeighbor(CoordinaryPoint* coPoint) { westNeighbor = coPoint; }
 
+    unsigned int GetX() { return locationX; }
+    unsigned int GetY() { return locationY; }
+    LANDFORM_ENUM GetLandForm() { return landform; }
+    Settlement* GetSettlement() { return settlement; }
+
 protected:
     unsigned int locationX;
     unsigned int locationY;
     LANDFORM_ENUM landform;
-    SETTLEMENT_ENUM settlementType;
 
     Settlement* settlement;
 

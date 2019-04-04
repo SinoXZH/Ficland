@@ -5,6 +5,9 @@ class Character {
 public:
     Character();
     ~Character();
+
+protected:
+    unsigned int charId;
 };
 
 #endif //__CHARACTER_H__
