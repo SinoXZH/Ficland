@@ -38,7 +38,11 @@ unsigned int InputUint();
 
 void PrintErr(const string& errmsg);
 
+void PrintErr(const char* format, ...);
+
 void PrintInfo(const string& msg);
+
+void PrintInfo(const char* format, ...);
 
 void OutputCmdList(const vector<string>& vec);
 

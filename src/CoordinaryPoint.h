@@ -8,6 +8,7 @@ const string PLAIN_DOT_CHAR = "-";
 const string MOUNTIAN_DOT_CHAR = "M";
 const string FOREST_DOT_CHAR = "*";
 const string DESERT_DOT_CHAR = ".";
+const string Boundary_DOT_CHAR = "\\";
 const string SUPER_CITY_DOT_CHAR = "S";
 const string CITY_DOT_CHAR = "A";
 const string TOWN_DOT_CHAR = "B";
@@ -38,11 +39,18 @@ public:
     unsigned int GetY() { return locationY; }
     LANDFORM_ENUM GetLandForm() { return landform; }
     Settlement* GetSettlement() { return settlement; }
+    string GetName();
+    bool IsCapital();
+    bool IsBoundary() { return isBoundary; }
+
+    static list<CoordinaryPoint*> TravelBetweenPoint(CoordinaryPoint* start, CoordinaryPoint* destination);
 
 protected:
     unsigned int locationX;
     unsigned int locationY;
     LANDFORM_ENUM landform;
+    bool isBoundary;
+    string name;
 
     Settlement* settlement;
 

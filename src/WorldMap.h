@@ -5,6 +5,24 @@
 #include "CoordinaryPoint.h"
 
 
+typedef struct _REGION_STRU{
+    _REGION_STRU()
+    : regionId(0)
+    , capitalPoint(NULL)
+    {
+        regionId = curRegionId;
+        ++curRegionId;
+    }
+
+    unsigned int regionId;
+    string regionName;
+    CoordinaryPoint* capitalPoint;
+
+    vector<CoordinaryPoint*> regionPoints;
+
+    static unsigned int curRegionId;
+}REGION_STRU;
+
 class WorldMap {
 public:
     WorldMap();
@@ -21,6 +39,7 @@ public:
     bool SaveWorldToXml();
 
 protected:
+    void ClassifyRegion();
 
 protected:
     string csvFilePath;
@@ -29,6 +48,7 @@ protected:
     unsigned int matrixWidth;
     unsigned int matrixHeight;
     vector<vector<CoordinaryPoint*> > coordinaryMatrix;
+    vector<REGION_STRU> regionList;
 };
 
 

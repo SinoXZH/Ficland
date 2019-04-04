@@ -27,11 +27,65 @@ void PrintErr(const string& errmsg)
     Output(str);
 }
 
+void PrintErr(const char* format, ...)
+{
+    string str;
+    char* buffer = (char*)malloc(MAX_STRING_SIZE);
+    if (NULL == buffer) {
+        return;
+    }
+    memset(buffer, 0, MAX_STRING_SIZE);
+
+    va_list vaList;
+    va_start(vaList, format);
+#ifdef WINDOWS_CPP
+    vsprintf_s(buffer, MAX_STRING_SIZE, format, vaList);
+#else
+    vsprintf(buffer, format, vaList);
+#endif
+    va_end(vaList);
+    str = buffer;
+
+    PrintErr(str);
+
+    if (NULL != buffer) {
+        free(buffer);
+        buffer = NULL;
+    }
+}
+
 void PrintInfo(const string& msg)
 {
     string str = "[INFO] ";
     str += msg;
     Output(str);
+}
+
+void PrintInfo(const char* format, ...)
+{
+    string str;
+    char* buffer = (char*)malloc(MAX_STRING_SIZE);
+    if (NULL == buffer) {
+        return;
+    }
+    memset(buffer, 0, MAX_STRING_SIZE);
+
+    va_list vaList;
+    va_start(vaList, format);
+#ifdef WINDOWS_CPP
+    vsprintf_s(buffer, MAX_STRING_SIZE, format, vaList);
+#else
+    vsprintf(buffer, format, vaList);
+#endif
+    va_end(vaList);
+    str = buffer;
+
+    PrintInfo(str);
+
+    if (NULL != buffer) {
+        free(buffer);
+        buffer = NULL;
+    }
 }
 
 void OutputCmdList(const vector<string>& vec)

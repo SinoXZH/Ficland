@@ -6,7 +6,7 @@
 
 typedef enum {
     SETTLEMENT_NONE = 0,
-    SETTLEMENT_SUPER_CITY,
+    SETTLEMENT_CAPITAL,
     SETTLEMENT_CITY,
     SETTLEMENT_TOWN
 
@@ -22,9 +22,14 @@ public:
 public:
     SETTLEMENT_ENUM GetSettlmentType() { return settlementType; }
 
+    string GetName() { return name; }
+
+    bool IsCapital() { return settlementType == SETTLEMENT_CAPITAL; }
+
 protected:
     CoordinaryPoint* parent;
     SETTLEMENT_ENUM settlementType;
+    string name;
     unsigned int population;
     Character* landLord;
 

@@ -97,11 +97,11 @@ bool XmlManager::SetAttribute(const void* node, const string& attrName, unsigned
 string XmlManager::GetAttribute(const void* node, const string& attrName)
 {
     if (node == NULL) {
-        return false;
+        return "";
     }
 
     if (attrName.empty()) {
-        return false;
+        return "";
     }
 
     XMLElement* ele = (XMLElement*)node;
