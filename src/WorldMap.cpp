@@ -3,8 +3,6 @@
 #include "XmlManager.h"
 
 
-unsigned int REGION_STRU::curRegionId = 0;
-
 WorldMap::WorldMap()
 : matrixWidth(0)
 , matrixHeight(0)
@@ -44,7 +42,7 @@ bool WorldMap::LoadMatrixFile()
     PrintInfo("Load file: %s, matrix width: %d, matrix height: %d", 
     csvFilePath.c_str(), matrixWidth, matrixHeight);
 
-    REGION_STRU boundaryRegion;
+    Region boundaryRegion;
     boundaryRegion.capitalPoint = NULL;
     boundaryRegion.regionName = "boundary";
 
@@ -75,7 +73,7 @@ bool WorldMap::LoadMatrixFile()
             if (coPoint->IsBoundary()) {
                 boundaryRegion.regionPoints.push_back(coPoint);
             } else if (coPoint->IsCapital()) {
-                REGION_STRU region;
+                Region region;
                 region.capitalPoint = coPoint;
                 regionList.push_back(region);
             }
@@ -101,7 +99,7 @@ void WorldMap::ClassifyRegion()
                 continue;
             }
 
-            for (vector<REGION_STRU>::iterator iter = regionList.begin(); 
+            for (vector<Region>::iterator iter = regionList.begin(); 
             iter != regionList.end(); ++iter) {
 
                 bool inCurRegion = true;
@@ -140,7 +138,7 @@ bool WorldMap::SaveWorldToXml()
     void* rootNode = xmlMngr.CreateRoot("WORLD_ARCHIVE");
     void* coPointsNode = xmlMngr.CreateChild(rootNode, "COORDINARY_POINTS");
 
-    for (vector<REGION_STRU>::iterator regionIter = regionList.begin(); 
+    for (vector<Region>::iterator regionIter = regionList.begin(); 
     regionIter != regionList.end(); ++regionIter) {
         void* regionNode = xmlMngr.CreateChild(coPointsNode, "REGION");
         xmlMngr.SetAttribute(regionNode, "ID", regionIter->regionId);

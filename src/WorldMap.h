@@ -2,26 +2,7 @@
 #define __WORLD_MAP_H__
 
 #include "globals.h"
-#include "CoordinaryPoint.h"
-
-
-typedef struct _REGION_STRU{
-    _REGION_STRU()
-    : regionId(0)
-    , capitalPoint(NULL)
-    {
-        regionId = curRegionId;
-        ++curRegionId;
-    }
-
-    unsigned int regionId;
-    string regionName;
-    CoordinaryPoint* capitalPoint;
-
-    vector<CoordinaryPoint*> regionPoints;
-
-    static unsigned int curRegionId;
-}REGION_STRU;
+#include "Region.h"
 
 class WorldMap {
 public:
@@ -48,7 +29,7 @@ protected:
     unsigned int matrixWidth;
     unsigned int matrixHeight;
     vector<vector<CoordinaryPoint*> > coordinaryMatrix;
-    vector<REGION_STRU> regionList;
+    vector<Region> regionList;
 };
 
 
