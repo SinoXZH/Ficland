@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <map>
 #include <stdarg.h>
 #include <fstream>
 
@@ -53,6 +54,10 @@ string GetAppDir();
 void FormatString(string& str, const char* format, ...);
 
 void AppendFormatString(string& str, const char* format, ...);
+
+void StringReplace(string &str, const string& src, const string& dst);
+
+vector<string> StringSplit(const string&str, const string& seperator);
 
 bool isFileExists(const string& filepath);
 

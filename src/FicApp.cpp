@@ -69,6 +69,7 @@ bool FicApp::Design()
     cmdList.push_back("create new empty matrix file");
     cmdList.push_back("load matrix file");
     cmdList.push_back("save archive to xml");
+    cmdList.push_back("load xml to archive");
     
     while (true) {
         
@@ -88,6 +89,11 @@ bool FicApp::Design()
         }
         else if (input == "save archive to xml") {
             if (SaveArchiveToXml() == false) {
+                return false;
+            }
+        }
+        else if (input == "load xml to archive") {
+            if (LoadXmlToArchive() == false) {
                 return false;
             }
         }
@@ -122,5 +128,10 @@ bool FicApp::LoadMatrixFile()
 bool FicApp::SaveArchiveToXml()
 {
     return curArchive.SaveArchiveToXml();
+}
+
+bool FicApp::LoadXmlToArchive()
+{
+    return curArchive.LoadXmlToArchive();
 }
 

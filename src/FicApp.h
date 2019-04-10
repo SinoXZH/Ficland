@@ -17,6 +17,7 @@ protected:
     bool CreateNewEmptyMatrixFile();
     bool LoadMatrixFile();
     bool SaveArchiveToXml();
+    bool LoadXmlToArchive();
 
 private:
     Archive curArchive;

@@ -9,12 +9,20 @@ public:
     Region();
     ~Region();
 
+public:
+    void SetRegionRecursively(CoordinaryPoint* coPoint);
+
+    unsigned int GetRegionPointCount() { return regionPoints.size(); }
+
+    CoordinaryPoint* FindPointInRegion(unsigned int x, unsigned int y);
+
 protected:
     static unsigned int curRegionId;
 
 public:
-    unsigned int regionId;
-    string regionName;
+    unsigned int id;
+    string name;
+    bool isOriental;
     CoordinaryPoint* capitalPoint;
 
     vector<CoordinaryPoint*> regionPoints;

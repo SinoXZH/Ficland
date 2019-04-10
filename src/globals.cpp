@@ -183,6 +183,43 @@ void AppendFormatString(string& str, const char* format, ...)
     }
 }
 
+void StringReplace(string &str, const string& src, const string& dst)
+{
+    if (str.empty() || src.empty()) {
+        return;
+    }
+
+    string::size_type pos = 0;
+
+    while ((pos = str.find(src, pos)) != string::npos)
+    {
+        str.replace(pos, src.size(), dst);
+        pos += dst.size();
+    }
+}
+
+vector<string> StringSplit(const string&str, const string& seperator)
+{
+    vector<string> vec;
+    if (str.empty()) {
+        return vec;
+    }
+
+    string::size_type pos = 0;
+    string leftstr = str;
+    while (pos != string::npos) {
+        string::size_type newPos = str.find_first_of(seperator, pos);
+        string sub = str.substr(pos, newPos - pos);
+        vec.push_back(sub);
+        if (newPos == string::npos) {
+            break;
+        }
+        pos = newPos + 1;
+    }
+
+    return vec;
+}
+
 bool isFileExists(const string& filepath)
 {
     if (filepath.empty()) {

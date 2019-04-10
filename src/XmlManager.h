@@ -21,11 +21,19 @@ public:
 
     void* GetFirstChild(const void* parent, string childTag = "");
 
+    void* GetNextNeighbor(const void* node);
+
     bool SetAttribute(const void* node, const string& attrName, const string& attrValue);
 
     bool SetAttribute(const void* node, const string& attrName, unsigned int attrValue);
 
     string GetAttribute(const void* node, const string& attrName);
+
+    unsigned int GetAttributeNum(const void* node, const string& attrName) { return atoi(GetAttribute(node, attrName).c_str()); }
+
+    void* GetRootNode();
+
+    string GetNodeTag(const void* node);
 
     bool Save();
 

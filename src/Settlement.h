@@ -24,6 +24,8 @@ public:
 
     string GetName() { return name; }
 
+    void SetName(const string& str) { name = str; }
+
     bool IsCapital() { return settlementType == SETTLEMENT_CAPITAL; }
 
 protected:

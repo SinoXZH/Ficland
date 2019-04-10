@@ -42,3 +42,12 @@ bool Archive::SaveArchiveToXml()
     worldMap.SetXmlFilePath(xmlFilePath);
     return worldMap.SaveWorldToXml();
 }
+
+bool Archive::LoadXmlToArchive()
+{
+    string xmlFilePath = arcDir;
+    xmlFilePath += PATH_SEPARATOR;
+    xmlFilePath += ARCHIVE_XML_NAME;
+    worldMap.SetXmlFilePath(xmlFilePath);
+    return worldMap.LoadXmlToWorld();
+}

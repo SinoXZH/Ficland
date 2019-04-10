@@ -64,6 +64,17 @@ void* XmlManager::GetFirstChild(const void* parent, string childTag/* = ""*/)
     return (void*)parentEle->FirstChildElement(childTag.c_str());
 }
 
+void* XmlManager::GetNextNeighbor(const void* node)
+{
+    if (node == NULL) {
+        return NULL;
+    }
+
+    XMLNode* xmlNode = (XMLNode*)node;
+    XMLNode* next = xmlNode->NextSibling();
+    return (void*)next;
+}
+
 bool XmlManager::SetAttribute(const void* node, const string& attrName, const string& attrValue)
 {
     if (node == NULL) {
@@ -105,9 +116,7 @@ string XmlManager::GetAttribute(const void* node, const string& attrName)
     }
 
     XMLElement* ele = (XMLElement*)node;
-    char attrValue[MAXPATH];
-    ele->Attribute(attrName.c_str(), attrValue);
-    return string(attrValue);
+    return ele->Attribute(attrName.c_str());
 }
 
 bool XmlManager::Save()
@@ -115,4 +124,19 @@ bool XmlManager::Save()
     return (tinixml2Doc.SaveFile(xmlFilePath.c_str()) == XML_SUCCESS);
 }
 
+void* XmlManager::GetRootNode()
+{
+    XMLElement* node = tinixml2Doc.FirstChildElement();
+    return (void*)node;
+}
+
+string XmlManager::GetNodeTag(const void* node)
+{
+    if (node == NULL) {
+        return "";
+    }
+
+    XMLElement* ele = (XMLElement*)node;
+    return ele->Value();
+}
 

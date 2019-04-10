@@ -17,6 +17,7 @@ public:
     bool CreateNewEmptyMatrixFile(const string& fileName, unsigned int width, unsigned int height);
     bool LoadMatrixFile(const string& fileName);
     bool SaveArchiveToXml();
+    bool LoadXmlToArchive();
 
 public:
     static string arcRootDir;

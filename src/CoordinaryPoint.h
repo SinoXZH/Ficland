@@ -35,15 +35,31 @@ public:
     void SetEastNeighbor(CoordinaryPoint* coPoint) { eastNeighbor = coPoint; }
     void SetWestNeighbor(CoordinaryPoint* coPoint) { westNeighbor = coPoint; }
 
+    CoordinaryPoint* GetNorthNeighbor() { return northNeighbor; }
+    CoordinaryPoint* GetSouthNeighbor() { return southNeighbor; }
+    CoordinaryPoint* GetEastNeighbor() { return eastNeighbor; }
+    CoordinaryPoint* GetWestNeighbor() { return westNeighbor; }
+
     unsigned int GetX() { return locationX; }
     unsigned int GetY() { return locationY; }
     LANDFORM_ENUM GetLandForm() { return landform; }
     Settlement* GetSettlement() { return settlement; }
+    void SetSettlement(Settlement* st) { settlement = st; }
     string GetName();
+    void SetName(const string& str) { name = str; }
+
+    void SetLandform(unsigned int lf) { landform = (LANDFORM_ENUM)lf; }
+
     bool IsCapital();
     bool IsBoundary() { return isBoundary; }
+    bool IsLand() { return (landform != LANDFORM_WATER); }
 
-    static list<CoordinaryPoint*> TravelBetweenPoint(CoordinaryPoint* start, CoordinaryPoint* destination);
+    CoordinaryPoint* GetCapitalPoint() { return capitalPoint; }
+    void SetCapitalPoint(CoordinaryPoint* point) { capitalPoint = point; }
+
+    static list<CoordinaryPoint*> TravelLandSimple(CoordinaryPoint* start, CoordinaryPoint* destination);
+
+    static CoordinaryPoint* MoveOneStepOnLandSimple(CoordinaryPoint* start, CoordinaryPoint* destination);
 
 protected:
     unsigned int locationX;
@@ -58,6 +74,8 @@ protected:
     CoordinaryPoint* southNeighbor;
     CoordinaryPoint* eastNeighbor;
     CoordinaryPoint* westNeighbor;
+
+    CoordinaryPoint* capitalPoint;
 };
 
 #endif //__COORDINARY_POINT_H__

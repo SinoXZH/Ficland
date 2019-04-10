@@ -10,6 +10,7 @@ CoordinaryPoint::CoordinaryPoint(unsigned int x, unsigned int y)
     , eastNeighbor(NULL)
     , westNeighbor(NULL)
     , isBoundary(false)
+    , capitalPoint(NULL)
 {
 
 }
@@ -88,38 +89,79 @@ bool CoordinaryPoint::IsCapital()
     return settlement->IsCapital();
 }
 
-list<CoordinaryPoint*> CoordinaryPoint::TravelBetweenPoint(CoordinaryPoint* start, CoordinaryPoint* destination)
+list<CoordinaryPoint*> CoordinaryPoint::TravelLandSimple(CoordinaryPoint* start, CoordinaryPoint* destination)
 {
     list<CoordinaryPoint*> travelPath;
+    list<CoordinaryPoint*> emptyPath;
+
     if (start == NULL || destination == NULL) {
-        return travelPath;
+        return emptyPath;
     }
 
     travelPath.push_back(start);
     if (start == destination) {
         return travelPath;
     }
-
-    while (start->locationX != destination->locationX) {
-        if (start->locationX < destination->locationX) {
-            start = start->eastNeighbor;
-        }
-        else{
-            start = start->westNeighbor;
-        }
-        travelPath.push_back(start);
-    }
     
-    while (start->locationY != destination->locationY) {
-        if (start->locationY < destination->locationY) {
-            start = start->southNeighbor;
+    CoordinaryPoint* curPoint = start;
+    while (curPoint != destination) {
+        curPoint = MoveOneStepOnLandSimple(curPoint, destination);
+        if (curPoint == NULL) {
+            break;
         }
-        else{
-            start = start->northNeighbor;
-        }
-        travelPath.push_back(start);
+
+        travelPath.push_back(curPoint);
     }
 
-    return travelPath;
+    if (curPoint == destination) {
+        return travelPath;
+    }
+
+    return emptyPath;
 }
+
+CoordinaryPoint* CoordinaryPoint::MoveOneStepOnLandSimple(CoordinaryPoint* start, CoordinaryPoint* destination)
+{
+    if (start == NULL || destination == NULL) {
+        return NULL;
+    }
+    if (start == destination) {
+        return start;
+    }
+
+    vector<CoordinaryPoint*> neighbors;
+    if (destination->locationX > start->locationX)
+
+    vector<CoordinaryPoint*> neighbors;
+    if (destination->locationX > start->locationX && start->eastNeighbor != NULL && start->eastNeighbor->IsLand()) {
+        neighbors.push_back(start->eastNeighbor);
+    }
+    if (destination->locationX < start->locationX && start->westNeighbor != NULL && start->westNeighbor->IsLand()) {
+        neighbors.push_back(start->westNeighbor);
+    }
+    if (destination->locationY > start->locationY && start->southNeighbor != NULL && start->southNeighbor->IsLand()) {
+        neighbors.push_back(start->southNeighbor);
+    }
+    if (destination->locationY < start->locationY && start->northNeighbor != NULL && start->northNeighbor->IsLand()) {
+        neighbors.push_back(start->northNeighbor);
+    }
+
+    if (neighbors.size() == 1) {
+        return neighbors[0];
+    }
+    else if (neighbors.size() == 2) {
+        unsigned int xDistance = abs((int)(destination->locationX) - (int)(start->locationX));
+        unsigned int yDistance = abs((int)(destination->locationY) - (int)(start->locationY));
+        return (xDistance >= yDistance) ? neighbors[0] : neighbors[1];
+    }
+    else if (neighbors.size() == 0) {
+        //PrintInfo("Move one step from (%d,%d) to (%d,%d) failed.", start->locationX, start->locationY, destination->locationX, destination->locationY);
+        return NULL;
+    }
+
+    PrintErr("Valid neighbors size is illegal: %d, while moving one step from (%d,%d) to (%d,%d).", 
+        neighbors.size(), start->locationX, start->locationY, destination->locationX, destination->locationY);
+    return NULL;
+}
+
 
