@@ -28,14 +28,19 @@ public:
 
     bool IsCapital() { return settlementType == SETTLEMENT_CAPITAL; }
 
+    void InitPlaceFromType();
+
 protected:
     CoordinaryPoint* parent;
     SETTLEMENT_ENUM settlementType;
     string name;
     unsigned int population;
+    unsigned int wealth;
+
     Character* landLord;
 
-    vector<Place*> placeList;
+    Place* functionalPlaceList[PLACE_ENUM_COUNT];
+    vector<Place*> residenceList;
 };
 
 

@@ -11,8 +11,64 @@ public:
     ~Room();
 
 protected:
-    string roomName;
+    string name;
     list<Character*> locateCharList;
+};
+
+class Hall : public Room {
+public:
+
+protected:
+
+};
+
+class Square : public Room {
+public:
+
+protected:
+
+};
+
+class Office : public Room {
+public:
+
+protected:
+
+};
+
+class Camp : public Room {
+public:
+
+protected:
+
+};
+
+class LivingRoom : public Room {
+public:
+
+protected:
+
+};
+
+class BathRoom : public Room {
+public:
+
+protected:
+
+};
+
+class Kitchen : public Room {
+public:
+
+protected:
+
+};
+
+class Bedroom : public Room {
+public:
+
+protected:
+
 };
 
 

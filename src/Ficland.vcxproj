@@ -122,6 +122,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CoordinaryPoint.cpp" />
     <ClCompile Include="CsvParser.cpp" />
+    <ClCompile Include="Group.cpp" />
     <ClCompile Include="Place.cpp" />
     <ClCompile Include="Region.cpp" />
     <ClCompile Include="Room.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="CoordinaryPoint.h" />
     <ClInclude Include="CsvParser.h" />
+    <ClInclude Include="Group.h" />
     <ClInclude Include="Place.h" />
     <ClInclude Include="Region.h" />
     <ClInclude Include="Room.h" />
