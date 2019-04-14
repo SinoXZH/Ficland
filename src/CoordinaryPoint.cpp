@@ -164,4 +164,13 @@ CoordinaryPoint* CoordinaryPoint::MoveOneStepOnLandSimple(CoordinaryPoint* start
     return NULL;
 }
 
+bool CoordinaryPoint::InitCoPoint()
+{
+    if (settlement != NULL) {
+        if (settlement->InitSettlement() == false) {
+            return false;
+        }
+    }
+    return true;
+}
 

@@ -30,6 +30,8 @@ public:
 public:
     void LoadFromSymbol(const string& sym);
 
+    bool InitCoPoint();
+
     void SetNorthNeighbor(CoordinaryPoint* coPoint) { northNeighbor = coPoint; }
     void SetSouthNeighbor(CoordinaryPoint* coPoint) { southNeighbor = coPoint; }
     void SetEastNeighbor(CoordinaryPoint* coPoint) { eastNeighbor = coPoint; }

@@ -18,8 +18,7 @@ const string XML_ATTR_ID = "ID";
 const string XML_ATTR_NAME = "NAME";
 const string XML_ATTR_ISORIENTAL = "ORIENTAL";
 const string XML_ATTR_TYPE = "TYPE";
-const string XML_ATTR_CO_X = "CO_X";
-const string XML_ATTR_CO_Y = "CO_Y";
+const string XML_ATTR_COORD = "COORD";
 const string XML_ATTR_CAPITAL_COORD = "CAPITAL_COORD";
 const string XML_ATTR_POINT_COUNT = "POINT_COUNT";
 
@@ -40,9 +39,13 @@ public:
 
     bool LoadXmlToWorld();
 
+    bool InitWorldMap();
+
     CoordinaryPoint* GetPointFromCoord(unsigned int x, unsigned int y);
 
     static pair<unsigned int, unsigned int> StringCoordToPair(const string& coStr);
+
+    static string NumCoordToString(unsigned int x, unsigned int y);
 
 protected:
     void ClassifyRegion();

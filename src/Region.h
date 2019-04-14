@@ -12,6 +12,8 @@ public:
 public:
     void SetRegionRecursively(CoordinaryPoint* coPoint);
 
+    bool InitRegion();
+
     unsigned int GetRegionPointCount() { return regionPoints.size(); }
 
     CoordinaryPoint* FindPointInRegion(unsigned int x, unsigned int y);
@@ -22,7 +24,6 @@ protected:
 public:
     unsigned int id;
     string name;
-    bool isOriental;
     CoordinaryPoint* capitalPoint;
 
     vector<CoordinaryPoint*> regionPoints;

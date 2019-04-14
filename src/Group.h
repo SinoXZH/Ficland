@@ -17,5 +17,11 @@ protected:
     vector<Character*> memberList;
 };
 
+
+class Family{
+public:
+
+};
+
 #endif //__GROUP_H__
 

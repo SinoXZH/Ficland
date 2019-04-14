@@ -12,3 +12,8 @@ Place::~Place()
 
 }
 
+void House::Init(unsigned int lv)
+{
+    
+}
+

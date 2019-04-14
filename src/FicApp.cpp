@@ -70,6 +70,7 @@ bool FicApp::Design()
     cmdList.push_back("load matrix file");
     cmdList.push_back("save archive to xml");
     cmdList.push_back("load xml to archive");
+    cmdList.push_back("initialize the world");
     
     while (true) {
         
@@ -93,6 +94,11 @@ bool FicApp::Design()
             }
         }
         else if (input == "load xml to archive") {
+            if (LoadXmlToArchive() == false) {
+                return false;
+            }
+        }
+        else if (input == "initialize the world") {
             if (LoadXmlToArchive() == false) {
                 return false;
             }
@@ -133,5 +139,10 @@ bool FicApp::SaveArchiveToXml()
 bool FicApp::LoadXmlToArchive()
 {
     return curArchive.LoadXmlToArchive();
+}
+
+bool FicApp::InitWorld()
+{
+    return curArchive.InitWorld();
 }
 

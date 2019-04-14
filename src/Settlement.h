@@ -6,9 +6,9 @@
 
 typedef enum {
     SETTLEMENT_NONE = 0,
-    SETTLEMENT_CAPITAL,
+    SETTLEMENT_TOWN,
     SETTLEMENT_CITY,
-    SETTLEMENT_TOWN
+    SETTLEMENT_CAPITAL
 
 }SETTLEMENT_ENUM;
 
@@ -28,7 +28,10 @@ public:
 
     bool IsCapital() { return settlementType == SETTLEMENT_CAPITAL; }
 
-    void InitPlaceFromType();
+    bool InitSettlement();
+
+protected:
+    void InitFuncPlace();
 
 protected:
     CoordinaryPoint* parent;
@@ -40,7 +43,7 @@ protected:
     Character* landLord;
 
     Place* functionalPlaceList[PLACE_ENUM_COUNT];
-    vector<Place*> residenceList;
+    vector<House*> residenceList;
 };
 
 

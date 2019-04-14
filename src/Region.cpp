@@ -5,7 +5,6 @@ unsigned int Region::curRegionId = 0;
 
 Region::Region()
 : id(0)
-, isOriental(false)
 , capitalPoint(NULL)
 {
     id = curRegionId;
@@ -53,4 +52,15 @@ CoordinaryPoint* Region::FindPointInRegion(unsigned int x, unsigned int y)
     }
 
     return NULL;
+}
+
+bool Region::InitRegion()
+{
+    for (vector<CoordinaryPoint*>::iterator iter = regionPoints.begin(); iter != regionPoints.end(); ++iter) {
+        if ((*iter)->InitCoPoint() == false) {
+            return false;
+        }
+    }
+    
+    return true;
 }

@@ -150,6 +150,13 @@ pair<unsigned int, unsigned int> WorldMap::StringCoordToPair(const string& coStr
     return make_pair(atoi(splitStrs[0].c_str()), atoi(splitStrs[1].c_str()));
 }
 
+string WorldMap::NumCoordToString(unsigned int x, unsigned int y)
+{
+    string ret;
+    FormatString(ret, "(%d,%d)", x, y);
+    return ret;
+}
+
 bool WorldMap::SaveWorldToXml()
 {
     XmlManager xmlMngr;
@@ -172,7 +179,6 @@ bool WorldMap::SaveWorldToXml()
         void* regionNode = xmlMngr.CreateChild(coPointsNode, XML_NODE_REGION);
         xmlMngr.SetAttribute(regionNode, XML_ATTR_ID, regionIter->id);
         xmlMngr.SetAttribute(regionNode, XML_ATTR_NAME, regionIter->name);
-        xmlMngr.SetAttribute(regionNode, XML_ATTR_ISORIENTAL, (unsigned int)regionIter->isOriental);
         string capitalCoord;
         if (regionIter->capitalPoint != NULL) {
             FormatString(capitalCoord, "(%d,%d)", regionIter->capitalPoint->GetX(), regionIter->capitalPoint->GetY());
@@ -192,8 +198,7 @@ bool WorldMap::SaveWorldToXml()
             }
 
             void* pointNode = xmlMngr.CreateChild(regionNode, XML_NODE_POINT);
-            xmlMngr.SetAttribute(pointNode, XML_ATTR_CO_X, coPoint->GetX());
-            xmlMngr.SetAttribute(pointNode, XML_ATTR_CO_Y, coPoint->GetY());
+            xmlMngr.SetAttribute(pointNode, XML_ATTR_COORD, NumCoordToString(coPoint->GetX(), coPoint->GetY()));
             xmlMngr.SetAttribute(pointNode, XML_ATTR_TYPE, (unsigned int)coPoint->GetLandForm());
             xmlMngr.SetAttribute(pointNode, XML_ATTR_NAME, coPoint->GetName());
             Settlement* settlement = coPoint->GetSettlement();
@@ -265,7 +270,6 @@ bool WorldMap::LoadXmlToWorld()
         Region regn;
         regn.id = xmlMngr.GetAttributeNum(regionNode, XML_ATTR_ID);
         regn.name = xmlMngr.GetAttribute(regionNode, XML_ATTR_NAME);
-        regn.isOriental = (bool)xmlMngr.GetAttributeNum(regionNode, XML_ATTR_ISORIENTAL);
         string tmp = xmlMngr.GetAttribute(regionNode, XML_ATTR_CAPITAL_COORD);
         if (!tmp.empty()) {
             pair<unsigned int, unsigned int> coPair = StringCoordToPair(tmp);
@@ -274,11 +278,10 @@ bool WorldMap::LoadXmlToWorld()
 
         void* pointNode = xmlMngr.GetFirstChild(regionNode);
         while (pointNode != NULL) {
-            unsigned int pointX = xmlMngr.GetAttributeNum(pointNode, XML_ATTR_CO_X);
-            unsigned int pointY = xmlMngr.GetAttributeNum(pointNode, XML_ATTR_CO_Y);
-            CoordinaryPoint* coPoint = GetPointFromCoord(pointX, pointY);
+            pair<unsigned int, unsigned int> coPair = StringCoordToPair(xmlMngr.GetAttribute(pointNode, XML_ATTR_COORD));
+            CoordinaryPoint* coPoint = GetPointFromCoord(coPair.first, coPair.second);
             if (coPoint == NULL) {
-                PrintErr("Can not find POINT node(%d,%d) in region point list.", pointX, pointY);
+                PrintErr("Can not find POINT node(%d,%d) in region point list.", coPair.first, coPair.second);
                 return false;
             }
 
@@ -306,6 +309,21 @@ bool WorldMap::LoadXmlToWorld()
 
     void* charactersNode = xmlMngr.GetNextNeighbor(coPointsNode);
     
+    return true;
+}
+
+bool WorldMap::InitWorldMap()
+{
+    if (regionList.empty()) {
+        return false;
+    }
+
+    for (vector<Region>::iterator iter = regionList.begin(); iter != regionList.end(); ++iter) {
+        if (iter->InitRegion() == false) {
+            return false;
+        }
+    }
+
     return true;
 }
 

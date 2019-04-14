@@ -16,8 +16,6 @@ typedef enum {
     PLACE_AUCTION_HOUSE,
     PLACE_ACADEMY,
     PLACE_HOSPITAL,
-    PLACE_ARENA,
-    PLACE_MERCENARY_UNION,
     PLACE_ENUM_COUNT
 }PLACE_ENUM;
 
@@ -36,12 +34,6 @@ protected:
     Group* functionalGroup;
 };
 
-
-class LoadMansion : public Place {
-public:
-
-protected:
-};
 
 class GovOffice : public Place {
 public:
@@ -91,28 +83,19 @@ public:
 protected:
 };
 
-class Arena : public Place {
+typedef enum{
+    HOUSE_NORMAL = 0,
+    HOUSE_VILLA,
+    HOUSE_MANSION,
+    HOUSE_PALACE
+}HOUSE_LEVEL;
+
+class House : public Place {
 public:
+    void Init(unsigned int lv);
 
 protected:
-};
-
-class MercenaryUnion : public Place {
-public:
-
-protected:
-};
-
-class Mansion : public Place {
-public:
-
-protected:
-};
-
-class Bungalow : public Place {
-public:
-
-protected:
+    HOUSE_LEVEL level;
 };
 
 

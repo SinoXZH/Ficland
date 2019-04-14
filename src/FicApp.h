@@ -18,6 +18,7 @@ protected:
     bool LoadMatrixFile();
     bool SaveArchiveToXml();
     bool LoadXmlToArchive();
+    bool InitWorld();
 
 private:
     Archive curArchive;

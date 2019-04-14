@@ -51,3 +51,8 @@ bool Archive::LoadXmlToArchive()
     worldMap.SetXmlFilePath(xmlFilePath);
     return worldMap.LoadXmlToWorld();
 }
+
+bool Archive::InitWorld()
+{
+    return worldMap.InitWorldMap();
+}
