@@ -25,7 +25,7 @@ public:
     Place();
     ~Place();
 
-protected:
+public:
     string placeName;
     vector<Room*> roomList;
 

@@ -6,7 +6,7 @@
 
 class Region{
 public:
-    Region();
+    Region(unsigned int id);
     ~Region();
 
 public:
@@ -18,12 +18,10 @@ public:
 
     CoordinaryPoint* FindPointInRegion(unsigned int x, unsigned int y);
 
-protected:
-    static unsigned int curRegionId;
-
 public:
-    unsigned int id;
-    string name;
+    unsigned int regionId;
+    string regionName;
+    RACE_ENUM mainRace;
     CoordinaryPoint* capitalPoint;
 
     vector<CoordinaryPoint*> regionPoints;

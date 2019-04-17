@@ -3,7 +3,12 @@
 
 
 class Personality{
-    
+public:
+    Personality();
+    ~Personality();
+
+public:
+
 };
 
 #endif //__PERSONALITY_H__

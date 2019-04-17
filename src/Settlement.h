@@ -20,23 +20,24 @@ public:
     ~Settlement();
 
 public:
-    SETTLEMENT_ENUM GetSettlmentType() { return settlementType; }
-
-    string GetName() { return name; }
-
-    void SetName(const string& str) { name = str; }
 
     bool IsCapital() { return settlementType == SETTLEMENT_CAPITAL; }
 
     bool InitSettlement();
 
+    unsigned int GetOwnerId();
+
 protected:
     void InitFuncPlace();
 
-protected:
+    TITLE_ENUM GetLordTitleFromPopulation();
+
+public:
     CoordinaryPoint* parent;
     SETTLEMENT_ENUM settlementType;
-    string name;
+    string stName;
+    RACE_ENUM mainRace;
+
     unsigned int population;
     unsigned int wealth;
 

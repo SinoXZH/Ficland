@@ -9,7 +9,10 @@ Place::Place()
 
 Place::~Place()
 {
-
+    if (functionalGroup != NULL) {
+        delete functionalGroup;
+        functionalGroup = NULL;
+    }
 }
 
 void House::Init(unsigned int lv)

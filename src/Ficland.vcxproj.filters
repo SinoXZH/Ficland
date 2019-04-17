@@ -54,6 +54,18 @@
     <ClCompile Include="Group.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="Ability.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Appearance.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Personality.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Relationship.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Archive.h">
@@ -99,6 +111,18 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Group.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Ability.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Appearance.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Personality.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="Relationship.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

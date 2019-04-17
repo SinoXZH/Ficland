@@ -1,4 +1,5 @@
 #include "globals.h"
+#include <random>
 
 
 void Output(const string& str)
@@ -231,4 +232,20 @@ bool isFileExists(const string& filepath)
 #else
     return (access(filepath.c_str(), 0) == 0);
 #endif
+}
+
+unsigned int GetNormalDistributionNum(unsigned int mean, unsigned int sd)
+{
+    random_device rd;
+    default_random_engine engine(rd());
+    normal_distribution<double> dist(mean, sd);
+    return lround(dist(engine));
+}
+
+unsigned int GetRandomNum(unsigned int min, unsigned int max)
+{
+    random_device rd;
+    default_random_engine engine(rd());
+    uniform_int_distribution<int> uni(min, max);
+    return (unsigned int)uni(engine);
 }

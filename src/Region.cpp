@@ -1,14 +1,11 @@
 #include "Region.h"
 
 
-unsigned int Region::curRegionId = 0;
-
-Region::Region()
-: id(0)
+Region::Region(unsigned int id)
+: regionId(id)
 , capitalPoint(NULL)
+, mainRace(RACE_HUMAN_SINIAN)
 {
-    id = curRegionId;
-    ++curRegionId;
 }
 
 Region::~Region()
@@ -30,11 +27,15 @@ void Region::SetRegionRecursively(CoordinaryPoint* coPoint)
         return;
     }
 
-    if (coPoint->GetCapitalPoint() != NULL) {
+    if (coPoint->capitalPoint != NULL) {
         return;
     }
 
-    coPoint->SetCapitalPoint(capitalPoint);
+    coPoint->capitalPoint = capitalPoint;
+    coPoint->mainRace = mainRace;
+    if (coPoint->settlement != NULL) {
+        coPoint->settlement->mainRace = mainRace;
+    }
     regionPoints.push_back(coPoint);
 
     SetRegionRecursively(coPoint->GetNorthNeighbor());
@@ -46,7 +47,7 @@ void Region::SetRegionRecursively(CoordinaryPoint* coPoint)
 CoordinaryPoint* Region::FindPointInRegion(unsigned int x, unsigned int y)
 {
     for (vector<CoordinaryPoint*>::iterator iter = regionPoints.begin(); iter != regionPoints.end(); ++iter) {
-        if ((*iter)->GetX() == x && (*iter)->GetY() == y) {
+        if ((*iter)->locationX == x && (*iter)->locationY == y) {
             return *iter;
         }
     }
