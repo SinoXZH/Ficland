@@ -99,7 +99,7 @@ bool FicApp::Design()
             }
         }
         else if (input == "initialize the world") {
-            if (LoadXmlToArchive() == false) {
+            if (InitWorld() == false) {
                 return false;
             }
         }
@@ -138,7 +138,10 @@ bool FicApp::SaveArchiveToXml()
 
 bool FicApp::LoadXmlToArchive()
 {
-    return curArchive.LoadXmlToArchive();
+    Output("Please input file name:");
+    string fileName = Input();
+    fileName += ".xml";
+    return curArchive.LoadXmlToArchive(fileName);
 }
 
 bool FicApp::InitWorld()

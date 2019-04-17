@@ -3,13 +3,14 @@
 
 
 typedef enum {
-    APP_UGLY,
-    APP_NORMAL,
-    APP_PRETTY,
-    APP_FAIRY,
-    APP_UNPARALLELED
-}APPEARANCE_LEVEL;
-
+    SKIN_PURE_WHITE,
+    SKIN_MILK_WHITE,
+    SKIN_PALE_WHITE,
+    SKIN_WHEAT,
+    SKIN_BROWN,
+    SKIN_DARK,
+    SKIN_LIGHT_BLUE
+}SKIN_COLOR;
 
 typedef enum {
     HAIR_BLACK,
@@ -30,26 +31,68 @@ typedef enum {
     HAIR_NOBLE_LADY
 }HAIR_STYLE;
 
+typedef enum {
+    EYE_BLACK,
+    EYE_BROWN,
+    EYE_BLUE,
+    EYE_GRAY,
+    EYE_RED,
+    EYE_GOLDEN,
+    EYE_GREEN,
+}EYE_COLOR;
+
+typedef enum {
+    EAR_NORMAL,
+    EAR_ELVISH,
+    EAR_DEVEL
+}EAR_STYLE;
+
+typedef enum {
+    BEARD_NONE,
+    BEARD_MOUSTACHE,
+    BEARD_GOATEE,
+    BEARD_WHISKERS,
+    BEARD_FULL
+}BEARD_ENUM;
 
 class Appearance{
 public:
     Appearance();
     ~Appearance();
 
-protected:
+public:
     int prettyLevel;
     unsigned int hight;
     int strongLevel;
     int fatLevel;
+    int legLength;
+    SKIN_COLOR skinColor;
 
     HAIR_COLOR hairColor;
     HAIR_STYLE hairStyle;
-    
+    EYE_COLOR eyeColor;
+    EAR_STYLE earStyle;
+    int eyeDepth;
+    int noseBridgeSize;
+    int noseWingSize;
+    int mouthWidth;
+    int lipsThickness;
+    int faceLength;
+    int faceWidth;
 };
 
 class FemaleAppearance : public Appearance{
-
+public:
+    int xSize;
+    int xRaise;
+    int tSize;
+    int tRaise;
+    int waistSize;
+    int skinSmooth;
 };
 
+class MaleAppearance : public Appearance {
+    BEARD_ENUM beard;
+};
 
 #endif //__APPEARANCE_H__

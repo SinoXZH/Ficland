@@ -42,33 +42,26 @@ public:
     CoordinaryPoint* GetEastNeighbor() { return eastNeighbor; }
     CoordinaryPoint* GetWestNeighbor() { return westNeighbor; }
 
-    unsigned int GetX() { return locationX; }
-    unsigned int GetY() { return locationY; }
-    LANDFORM_ENUM GetLandForm() { return landform; }
-    Settlement* GetSettlement() { return settlement; }
-    void SetSettlement(Settlement* st) { settlement = st; }
-    string GetName();
-    void SetName(const string& str) { name = str; }
-
     void SetLandform(unsigned int lf) { landform = (LANDFORM_ENUM)lf; }
 
     bool IsCapital();
     bool IsBoundary() { return isBoundary; }
     bool IsLand() { return (landform != LANDFORM_WATER); }
 
-    CoordinaryPoint* GetCapitalPoint() { return capitalPoint; }
-    void SetCapitalPoint(CoordinaryPoint* point) { capitalPoint = point; }
+    string GetName();
 
     static list<CoordinaryPoint*> TravelLandSimple(CoordinaryPoint* start, CoordinaryPoint* destination);
 
     static CoordinaryPoint* MoveOneStepOnLandSimple(CoordinaryPoint* start, CoordinaryPoint* destination);
 
-protected:
+public:
     unsigned int locationX;
     unsigned int locationY;
     LANDFORM_ENUM landform;
     bool isBoundary;
-    string name;
+    string pointName;
+
+    RACE_ENUM mainRace;
 
     Settlement* settlement;
 

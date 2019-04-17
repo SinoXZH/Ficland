@@ -1,5 +1,6 @@
 #include "globals.h"
 #include "Archive.h"
+#include "WorldMap.h"
 
 
 string Archive::arcRootDir;
@@ -19,9 +20,9 @@ bool Archive::CreateNewEmptyMatrixFile(const string& fileName, unsigned int widt
     string csvFilePath = arcDir;
     csvFilePath += PATH_SEPARATOR;
     csvFilePath += fileName;
-    worldMap.SetCsvFilePath(csvFilePath);
+    WorldMap::GetInstance()->SetCsvFilePath(csvFilePath);
 
-    return worldMap.CreateNewEmptyFile(width, height);
+    return WorldMap::GetInstance()->CreateNewEmptyFile(width, height);
 }
 
 bool Archive::LoadMatrixFile(const string& fileName)
@@ -29,30 +30,31 @@ bool Archive::LoadMatrixFile(const string& fileName)
     string csvFilePath = arcDir;
     csvFilePath += PATH_SEPARATOR;
     csvFilePath += fileName;
-    worldMap.SetCsvFilePath(csvFilePath);
+    WorldMap::GetInstance()->SetCsvFilePath(csvFilePath);
 
-    return worldMap.LoadMatrixFile();
+    return WorldMap::GetInstance()->LoadMatrixFile();
 }
 
 bool Archive::SaveArchiveToXml()
 {
-    string xmlFilePath = arcDir;
-    xmlFilePath += PATH_SEPARATOR;
-    xmlFilePath += ARCHIVE_XML_NAME;
-    worldMap.SetXmlFilePath(xmlFilePath);
-    return worldMap.SaveWorldToXml();
+    if (WorldMap::GetInstance()->GetXmlFilePath().empty()) {
+        string xmlFilePath = WorldMap::GetInstance()->GetCsvFilePath();
+        StringReplace(xmlFilePath, ".csv", ".xml");
+        WorldMap::GetInstance()->SetXmlFilePath(xmlFilePath);
+    }
+    return WorldMap::GetInstance()->SaveWorldToXml();
 }
 
-bool Archive::LoadXmlToArchive()
+bool Archive::LoadXmlToArchive(const string& fileName)
 {
     string xmlFilePath = arcDir;
     xmlFilePath += PATH_SEPARATOR;
-    xmlFilePath += ARCHIVE_XML_NAME;
-    worldMap.SetXmlFilePath(xmlFilePath);
-    return worldMap.LoadXmlToWorld();
+    xmlFilePath += fileName;
+    WorldMap::GetInstance()->SetXmlFilePath(xmlFilePath);
+    return WorldMap::GetInstance()->LoadXmlToWorld();
 }
 
 bool Archive::InitWorld()
 {
-    return worldMap.InitWorldMap();
+    return WorldMap::GetInstance()->InitWorldMap();
 }

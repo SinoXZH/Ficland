@@ -11,6 +11,7 @@ CoordinaryPoint::CoordinaryPoint(unsigned int x, unsigned int y)
     , westNeighbor(NULL)
     , isBoundary(false)
     , capitalPoint(NULL)
+    , mainRace(RACE_UNKNOWN)
 {
 
 }
@@ -74,10 +75,10 @@ void CoordinaryPoint::LoadFromSymbol(const string& sym)
 string CoordinaryPoint::GetName()
 {
     if (settlement != NULL) {
-        return settlement->GetName();
+        return settlement->stName;
     }
 
-    return name;
+    return pointName;
 }
 
 bool CoordinaryPoint::IsCapital()
