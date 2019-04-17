@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<WORLD_ARCHIVE>
+    <WORLD_MAP MAP_WIDTH="3" MAP_HEIGHT="3">
+        <REGION ID="2" NAME="" MAIN_RACE="0" CAPITAL_COORD="(1,1)" POINT_COUNT="9">
+            <POINT COORD="(1,1)" TYPE="2" NAME="" MAIN_RACE="0">
+                <SETTLEMENT NAME="" TYPE="3" POPULATION="425496" WEALTH="63" OWNER_ID="0" MAIN_RACE="0"/>
+            </POINT>
+            <POINT COORD="(1,0)" TYPE="2" NAME="" MAIN_RACE="0"/>
+            <POINT COORD="(2,0)" TYPE="1" NAME="" MAIN_RACE="0"/>
+            <POINT COORD="(2,1)" TYPE="1" NAME="" MAIN_RACE="0"/>
+            <POINT COORD="(2,2)" TYPE="1" NAME="" MAIN_RACE="0"/>
+            <POINT COORD="(1,2)" TYPE="1" NAME="" MAIN_RACE="0"/>
+            <POINT COORD="(0,2)" TYPE="1" NAME="" MAIN_RACE="0"/>
+            <POINT COORD="(0,1)" TYPE="1" NAME="" MAIN_RACE="0"/>
+            <POINT COORD="(0,0)" TYPE="1" NAME="" MAIN_RACE="0"/>
+        </REGION>
+        <REGION ID="0" NAME="water" MAIN_RACE="0" CAPITAL_COORD="" POINT_COUNT="0"/>
+        <REGION ID="1" NAME="boundary" MAIN_RACE="0" CAPITAL_COORD="" POINT_COUNT="0"/>
+    </WORLD_MAP>
+    <CHARACTERS>
+        <CHARA ID="0" GENDER="0" TITLE="5" NAME="" FAMILY_NAME="" AGE="25" RACE="0"/>
+    </CHARACTERS>
+</WORLD_ARCHIVE>
