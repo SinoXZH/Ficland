@@ -79,10 +79,11 @@ public:
     int lipsThickness;
     int faceLength;
     int faceWidth;
-};
 
-class FemaleAppearance : public Appearance{
-public:
+    //male
+    BEARD_ENUM beard;
+
+    //female
     int xSize;
     int xRaise;
     int tSize;
@@ -91,8 +92,5 @@ public:
     int skinSmooth;
 };
 
-class MaleAppearance : public Appearance {
-    BEARD_ENUM beard;
-};
 
 #endif //__APPEARANCE_H__

@@ -5,10 +5,6 @@ Character::Character(unsigned int id)
     , charaAge(0)
     , charaGender(GENDER_UNKNOWN)
     , charaRace(RACE_UNKNOWN)
-    , appearance(NULL)
-    , personality(NULL)
-    , ability(NULL)
-    , charaTitle(TITLE_NONE)
 {
 
 }
@@ -20,8 +16,9 @@ Character::~Character()
 
 void Character::InitChara(TITLE_ENUM title, JOB_ENUM job, RACE_ENUM race, unsigned int age, GENDER_ENUM gender)
 {
-    charaTitle = title;
-
+    socialStatus.nobleTitle = title;
+    socialStatus.job = job;
+    
     unsigned int randNum = 0;
 
     if (race == RACE_UNKNOWN) {

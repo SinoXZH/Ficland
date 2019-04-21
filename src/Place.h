@@ -23,7 +23,7 @@ typedef enum {
 class Place {
 public:
     Place();
-    ~Place();
+    virtual ~Place();
 
 public:
     string placeName;

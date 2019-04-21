@@ -9,7 +9,7 @@
 class Group {
 public:
     Group();
-    ~Group();
+    virtual ~Group();
 
 public:
     virtual void SetGroupLeader(Character* chara) = 0;

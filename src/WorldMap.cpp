@@ -251,7 +251,7 @@ bool WorldMap::SaveWorldToXml()
 
         Character* chara = iter->second;
         xmlMngr.SetAttribute(charaNode, XML_ATTR_GENDER, chara->charaGender);
-        xmlMngr.SetAttribute(charaNode, XML_ATTR_TITLE, chara->charaTitle);
+        xmlMngr.SetAttribute(charaNode, XML_ATTR_TITLE, chara->socialStatus.nobleTitle);
         xmlMngr.SetAttribute(charaNode, XML_ATTR_NAME, chara->selfName);
         xmlMngr.SetAttribute(charaNode, XML_ATTR_FAMILY_NAME, chara->familyName);
         xmlMngr.SetAttribute(charaNode, XML_ATTR_AGE, chara->charaAge);
@@ -367,7 +367,7 @@ bool WorldMap::LoadXmlToWorld()
         chara->charaRace = (RACE_ENUM)xmlMngr.GetAttributeNum(charaNode, XML_ATTR_RACE);
         chara->charaAge = xmlMngr.GetAttributeNum(charaNode, XML_ATTR_AGE);
         chara->charaGender = (GENDER_ENUM)xmlMngr.GetAttributeNum(charaNode, XML_ATTR_GENDER);
-        chara->charaTitle = (TITLE_ENUM)xmlMngr.GetAttributeNum(charaNode, XML_ATTR_TITLE);
+        chara->socialStatus.nobleTitle = (TITLE_ENUM)xmlMngr.GetAttributeNum(charaNode, XML_ATTR_TITLE);
     }
     
     return true;

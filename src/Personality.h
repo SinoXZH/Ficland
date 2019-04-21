@@ -8,7 +8,9 @@ public:
     ~Personality();
 
 public:
-
+    int introvertAndExtrovert;
+    int gentleAndRode;
+    
 };
 
 #endif //__PERSONALITY_H__

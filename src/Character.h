@@ -5,6 +5,7 @@
 #include "Appearance.h"
 #include "Personality.h"
 #include "Ability.h"
+#include "SocialStatus.h"
 #include "Relationship.h"
 
 
@@ -28,25 +29,6 @@ typedef enum{
     GENDER_MALE = 0,
     GENDER_FEMALE
 }GENDER_ENUM;
-
-typedef enum {
-    TITLE_NONE = 0,
-    TITLE_BARON,
-    TITLE_VISCOUNT,
-    TITLE_COUNT,
-    TITLE_MARQUIS,
-    TITLE_DUKE,
-    TITLE_KING,
-    TITLE_EMPEROR
-}TITLE_ENUM;
-
-typedef enum {
-    JOB_NONE = 0,
-    JOB_LANDLORD,
-    JOB_ACADEMY_PRESIDENT,
-    JOB_ACADEMY_TEACHER,
-    JOB_ACADEMY_STUDENT
-}JOB_ENUM;
 
 const unsigned int LANDLORD_EVERAGE_AGE = 40;
 const unsigned int PRESIDENT_EVERAGE_AGE = 40;
@@ -78,11 +60,11 @@ public:
     string selfName;
     GENDER_ENUM charaGender;
     RACE_ENUM charaRace;
-    TITLE_ENUM charaTitle;
     
-    Appearance* appearance;
-    Personality* personality;
-    Ability* ability;
+    Appearance appearance;
+    SocialStatus socialStatus;
+    Personality personality;
+    Ability ability;
     map<unsigned int, Relationship> relationList;
 };
 
