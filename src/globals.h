@@ -66,5 +66,8 @@ unsigned int GetNormalDistributionNum(unsigned int mean, unsigned int sd);
 
 unsigned int GetRandomNum(unsigned int min, unsigned int max);
 
+#define min(a, b) (a < b ? a : b)
+#define max(a, b) (a > b ? a : b)
+
 #endif
 

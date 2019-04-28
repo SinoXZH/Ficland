@@ -16,3 +16,9 @@ Appearance::~Appearance()
 {
     
 }
+
+void Appearance::RandomInitAppearance(RACE_ENUM race, GENDER_ENUM gender, unsigned int age, unsigned int score)
+{
+
+}
+

@@ -28,6 +28,11 @@ public:
 
     virtual void RandomInitGroupMembers();
 
+protected:
+    void RandomInitConcubines();
+
+    void RandomInitChildren(Character* father, Character* mother);
+
 public:
     Character* husband;
     Character* wife;

@@ -1,6 +1,7 @@
 #ifndef __APPEARANCE_H__
 #define __APPEARANCE_H__
 
+#include "CharaDefine.h"
 
 typedef enum {
     SKIN_PURE_WHITE,
@@ -59,6 +60,9 @@ class Appearance{
 public:
     Appearance();
     ~Appearance();
+
+public:
+    void RandomInitAppearance(RACE_ENUM race, GENDER_ENUM gender, unsigned int age, unsigned int score);
 
 public:
     int prettyLevel;

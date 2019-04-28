@@ -63,6 +63,9 @@
     <ClCompile Include="Personality.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="SocialStatus.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="Relationship.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -120,6 +123,12 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Personality.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="SocialStatus.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="CharaDefine.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="Relationship.h">

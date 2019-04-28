@@ -16,6 +16,8 @@ typedef enum {
 
 typedef enum {
     JOB_NONE = 0,
+    JOB_MAID,
+    JOB_CONCUBINE,
     JOB_ACADEMY_STUDENT,
     JOB_ACADEMY_TEACHER,
     JOB_ACADEMY_PRESIDENT,

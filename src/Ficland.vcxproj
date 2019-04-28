@@ -131,6 +131,7 @@
     <ClCompile Include="Relationship.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Settlement.cpp" />
+    <ClCompile Include="SocialStatus.cpp" />
     <ClCompile Include="TextManager.cpp" />
     <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="WorldMap.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Appearance.h" />
     <ClInclude Include="Archive.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="CharaDefine.h" />
     <ClInclude Include="CoordinaryPoint.h" />
     <ClInclude Include="CsvParser.h" />
     <ClInclude Include="Group.h" />
@@ -153,6 +155,7 @@
     <ClInclude Include="Relationship.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Settlement.h" />
+    <ClInclude Include="SocialStatus.h" />
     <ClInclude Include="TextManager.h" />
     <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="WorldMap.h" />

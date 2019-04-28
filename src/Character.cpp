@@ -14,7 +14,7 @@ Character::~Character()
 
 }
 
-void Character::InitChara(TITLE_ENUM title, JOB_ENUM job, RACE_ENUM race, unsigned int age, GENDER_ENUM gender)
+void Character::InitChara(TITLE_ENUM title, JOB_ENUM job, RACE_ENUM race, unsigned int age, GENDER_ENUM gender, unsigned int appranceScore)
 {
     socialStatus.nobleTitle = title;
     socialStatus.job = job;
@@ -37,6 +37,14 @@ void Character::InitChara(TITLE_ENUM title, JOB_ENUM job, RACE_ENUM race, unsign
     }
 
     charaGender = gender;
+
+    if (appranceScore == 0) {
+        appranceScore = RandomInitAppearanceScore();
+    }
+
+    appearance.RandomInitAppearance(charaRace, charaGender, charaAge, appranceScore);
+    ability.RandomInitAbility(socialStatus.job);
+    personality.RandomInitPersonality(gender);
 }
 
 unsigned int Character::RandomInitAge(JOB_ENUM job)
@@ -91,4 +99,15 @@ GENDER_ENUM Character::RandomInitGender(JOB_ENUM job)
     }
 
     return GENDER_MALE;
+}
+
+GENDER_ENUM Character::RandomInitGender()
+{
+    unsigned int randNum = GetRandomNum(0, 1);
+    return (GENDER_ENUM)randNum;
+}
+
+unsigned int Character::RandomInitAppearanceScore()
+{
+    return 0;
 }
