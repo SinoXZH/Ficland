@@ -234,12 +234,17 @@ bool isFileExists(const string& filepath)
 #endif
 }
 
-unsigned int GetNormalDistributionNum(unsigned int mean, unsigned int sd)
+unsigned int GetNormalDistributionUnsignedNum(unsigned int mean, unsigned int sd)
 {
     random_device rd;
     default_random_engine engine(rd());
     normal_distribution<double> dist(mean, sd);
-    return lround(dist(engine));
+    int ret = lround(dist(engine));
+    if (ret < 0) {
+        return 0;
+    }
+
+    return ret;
 }
 
 unsigned int GetRandomNum(unsigned int min, unsigned int max)

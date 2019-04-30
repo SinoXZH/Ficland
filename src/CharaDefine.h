@@ -24,8 +24,8 @@ typedef enum {
 
 const unsigned int LANDLORD_EVERAGE_AGE = 40;
 const unsigned int PRESIDENT_EVERAGE_AGE = 40;
-const unsigned int TEACHER_EVERAGE_AGE = 30;
-const unsigned int CONCUBINE_EVERAGE_AGE = 27;
+const unsigned int TEACHER_EVERAGE_AGE = 32;
+const unsigned int CONCUBINE_EVERAGE_AGE = 30;
 const unsigned int STUDENT_EVERAGE_AGE = 18;
 
 

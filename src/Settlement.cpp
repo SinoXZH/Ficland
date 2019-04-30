@@ -41,23 +41,26 @@ Settlement::~Settlement()
 
 bool Settlement::InitSettlement()
 {
-    wealth = GetNormalDistributionNum(50, 10);
+    wealth = GetNormalDistributionUnsignedNum(50, 10);
     switch (settlementType)
     {
     case SETTLEMENT_TOWN:
-        population = GetNormalDistributionNum(10000, 5000);
+        population = GetNormalDistributionUnsignedNum(10000, 5000);
         break;
     case SETTLEMENT_CITY:
-        population = GetNormalDistributionNum(100000, 50000);
+        population = GetNormalDistributionUnsignedNum(100000, 50000);
         break;
     case SETTLEMENT_CAPITAL:
-        population = GetNormalDistributionNum(500000, 100000);
+        population = GetNormalDistributionUnsignedNum(500000, 100000);
         break;
     default:
         break;
     }
 
     InitFuncPlace();
+
+    functionalPlaceList[PLACE_ACADEMY]->functionalGroup = new AcademyGroup();
+    AcademyGroup* acdmyGroup = (AcademyGroup*)functionalPlaceList[PLACE_ACADEMY]->functionalGroup;
 
     //construct landlord character
     landLord = WorldMap::GetInstance()->NewCharacter();
@@ -67,6 +70,13 @@ bool Settlement::InitSettlement()
     functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup = new Family();
     functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->SetGroupLeader(landLord);
     functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->RandomInitGroupMembers();
+
+    for (vector<Character*>::iterator iter = functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->memberList.begin(); 
+        iter != functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->memberList.end(); ++iter) {
+        if ((*iter)->socialStatus.job == JOB_ACADEMY_STUDENT) {
+            acdmyGroup->studentList.push_back(*iter);
+        }
+    }
 
     return true;
 }

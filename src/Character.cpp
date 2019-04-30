@@ -49,18 +49,18 @@ void Character::InitChara(TITLE_ENUM title, JOB_ENUM job, RACE_ENUM race, unsign
 
 unsigned int Character::RandomInitAge(JOB_ENUM job)
 {
-    unsigned int sd = 10;
+    unsigned int sd = 5;
 
     switch (job)
     {
     case JOB_LANDLORD:
-        return GetNormalDistributionNum(LANDLORD_EVERAGE_AGE, sd);
+        return GetNormalDistributionUnsignedNum(LANDLORD_EVERAGE_AGE, sd);
     case JOB_ACADEMY_PRESIDENT:
-        return GetNormalDistributionNum(PRESIDENT_EVERAGE_AGE, sd);
+        return GetNormalDistributionUnsignedNum(PRESIDENT_EVERAGE_AGE, sd);
     case JOB_ACADEMY_TEACHER:
-        return GetNormalDistributionNum(TEACHER_EVERAGE_AGE, sd);
+        return GetNormalDistributionUnsignedNum(TEACHER_EVERAGE_AGE, sd);
     case JOB_ACADEMY_STUDENT:
-        return GetNormalDistributionNum(STUDENT_EVERAGE_AGE, sd);
+        return GetNormalDistributionUnsignedNum(STUDENT_EVERAGE_AGE, sd);
     default:
         break;
     }

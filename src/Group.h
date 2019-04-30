@@ -13,10 +13,9 @@ public:
 
 public:
     virtual void SetGroupLeader(Character* chara) = 0;
-    virtual void RandomInitGroupMembers() = 0;
+    virtual void RandomInitGroupMembers() {};
 
 public:
-
     Character* leader;
     vector<Character*> memberList;
 };
@@ -39,6 +38,16 @@ public:
     vector<Character*> concubines;
     vector<Character*> children;
     vector<Character*> slaves;
+};
+
+class AcademyGroup : public Group {
+public:
+    virtual void SetGroupLeader(Character* chara);
+
+public:
+    Character* president;
+    vector<Character*> teacherList;
+    vector<Character*> studentList;
 };
 
 #endif //__GROUP_H__
