@@ -64,12 +64,50 @@ bool Settlement::InitSettlement()
 
     //construct landlord character
     landLord = WorldMap::GetInstance()->NewCharacter();
-    landLord->InitChara(GetLordTitleFromPopulation(), JOB_LANDLORD, mainRace);
+    landLord->InitChara("", GetLordTitleFromPopulation(), JOB_LANDLORD, mainRace);
 
     //construct the lord house
+    functionalPlaceList[PLACE_LORD_MANSION]->owner = landLord;
     functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup = new Family();
     functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->SetGroupLeader(landLord);
     functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->RandomInitGroupMembers();
+
+    Character* president = WorldMap::GetInstance()->NewCharacter();
+    president->InitChara("", TITLE_MARQUIS, JOB_ACADEMY_PRESIDENT, mainRace);
+    acdmyGroup->SetGroupLeader(president);
+    House* presidentHouse = new House();
+    presidentHouse->owner = president;
+    functionalPlaceList[PLACE_ACADEMY]->owner = president;
+    presidentHouse->functionalGroup = new Family();
+    presidentHouse->functionalGroup->SetGroupLeader(president);
+    presidentHouse->functionalGroup->RandomInitGroupMembers();
+    residenceList.push_back(presidentHouse);
+
+    unsigned int teacherCount = 12;
+    for (unsigned int i = 0; i < teacherCount; ++i) {
+        Character* teacher = WorldMap::GetInstance()->NewCharacter();
+        teacher->InitChara("", TITLE_BARON, JOB_ACADEMY_TEACHER, mainRace);
+        acdmyGroup->teacherList.push_back(teacher);
+        House* teacherHouse = new House();
+        teacherHouse->owner = teacher;
+        teacherHouse->functionalGroup = new Family();
+        teacherHouse->functionalGroup->SetGroupLeader(teacher);
+        teacherHouse->functionalGroup->RandomInitGroupMembers();
+        residenceList.push_back(teacherHouse);
+    }
+
+    unsigned int citizenCount = 30;
+    for (unsigned int i = 0; i < citizenCount; ++i) {
+        Character* citizen = WorldMap::GetInstance()->NewCharacter();
+        unsigned int citizenAge = GetNormalDistributionUnsignedNum(38, 3);
+        citizen->InitChara("", TITLE_NONE, JOB_CITIZEN, mainRace, citizenAge);
+        House* citizenHouse = new House();
+        citizenHouse->owner = citizen;
+        citizenHouse->functionalGroup = new Family();
+        citizenHouse->functionalGroup->SetGroupLeader(citizen);
+        citizenHouse->functionalGroup->RandomInitGroupMembers();
+        residenceList.push_back(citizenHouse);
+    }
 
     for (vector<Character*>::iterator iter = functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->memberList.begin(); 
         iter != functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->memberList.end(); ++iter) {

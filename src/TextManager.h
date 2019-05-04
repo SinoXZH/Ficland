@@ -3,13 +3,36 @@
 
 
 #include "globals.h"
+#include "CharaDefine.h"
+
 
 class TextManager {
 public:
-    TextManager();
-    ~TextManager();
+    static TextManager* GetInstance();
+    static void DelInstance();
+    static void InitInstance(const string& path);
+
+public:
+    string GetRandomOrientalFamilyName();
+
+    string GetRandomOrientalName(GENDER_ENUM gender);
 
 protected:
+    TextManager(const string& path);
+    ~TextManager();
+
+    bool Init();
+
+    vector<string> GetStringListFromFile(const string& filepath);
+
+protected:
+    static TextManager* instance;
+    string textPath;
+
+    vector<string> orientalFamilyNameList;
+    vector<string> orientalMaleNameList;
+    vector<string> orientalFemaleNameList;
+    set<string> existNameSet;
 };
 
 

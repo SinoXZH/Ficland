@@ -1,6 +1,7 @@
 #include "globals.h"
 #include "Archive.h"
 #include "WorldMap.h"
+#include "TextManager.h"
 
 
 string Archive::arcRootDir;
@@ -56,5 +57,9 @@ bool Archive::LoadXmlToArchive(const string& fileName)
 
 bool Archive::InitWorld()
 {
+    string textPath = arcDir;
+    textPath += PATH_SEPARATOR;
+    textPath += "texts";
+    TextManager::InitInstance(textPath);
     return WorldMap::GetInstance()->InitWorldMap();
 }

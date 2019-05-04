@@ -37,49 +37,49 @@ public:
 
 class GovOffice : public Place {
 public:
-
+    GovOffice() { placeName = "Government Office"; }
 protected:
 };
 
 class PoliceOffice : public Place {
 public:
-
+    PoliceOffice() { placeName = "Police Office"; }
 protected:
 };
 
 class MillitaryCamp : public Place {
 public:
-
+    MillitaryCamp() { placeName = "Military Camp"; }
 protected:
 };
 
 class Market : public Place {
 public:
-
+    Market() { placeName = "Market"; }
 protected:
 };
 
 class Tavern : public Place {
 public:
-
+    Tavern() { placeName = "Tavern"; }
 protected:
 };
 
 class AuctionHouse : public Place {
 public:
-
+    AuctionHouse() { placeName = "Auction House"; }
 protected:
 };
 
 class Academy : public Place {
 public:
-
+    Academy() { placeName = "Academy"; }
 protected:
 };
 
 class Hospital : public Place {
 public:
-
+    Hospital() { placeName = "Hospital"; }
 protected:
 };
 
@@ -92,6 +92,8 @@ typedef enum{
 
 class House : public Place {
 public:
+    House() { placeName = "House"; }
+    
     void Init(unsigned int lv);
 
 protected:

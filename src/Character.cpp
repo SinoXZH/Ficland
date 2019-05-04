@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "TextManager.h"
 
 Character::Character(unsigned int id)
     : charaId(id)
@@ -14,8 +15,15 @@ Character::~Character()
 
 }
 
-void Character::InitChara(TITLE_ENUM title, JOB_ENUM job, RACE_ENUM race, unsigned int age, GENDER_ENUM gender, unsigned int appranceScore)
+void Character::InitChara(const string& houseName, TITLE_ENUM title, JOB_ENUM job, 
+RACE_ENUM race, unsigned int age, GENDER_ENUM gender, unsigned int appranceScore)
 {
+    if (houseName.empty()) {
+        familyName = TextManager::GetInstance()->GetRandomOrientalFamilyName();
+    } else {
+        familyName = houseName;
+    }
+
     socialStatus.nobleTitle = title;
     socialStatus.job = job;
     
@@ -38,6 +46,8 @@ void Character::InitChara(TITLE_ENUM title, JOB_ENUM job, RACE_ENUM race, unsign
 
     charaGender = gender;
 
+    selfName = TextManager::GetInstance()->GetRandomOrientalName(charaGender);
+
     if (appranceScore == 0) {
         appranceScore = RandomInitAppearanceScore();
     }
@@ -49,7 +59,7 @@ void Character::InitChara(TITLE_ENUM title, JOB_ENUM job, RACE_ENUM race, unsign
 
 unsigned int Character::RandomInitAge(JOB_ENUM job)
 {
-    unsigned int sd = 5;
+    unsigned int sd = 3;
 
     switch (job)
     {

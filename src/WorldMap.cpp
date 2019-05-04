@@ -239,6 +239,29 @@ bool WorldMap::SaveWorldToXml()
                 xmlMngr.SetAttribute(settlementNode, XML_ATTR_WEALTH, settlement->wealth);
                 xmlMngr.SetAttribute(settlementNode, XML_ATTR_OWNER_ID, settlement->GetOwnerId());
                 xmlMngr.SetAttribute(settlementNode, XML_ATTR_MAIN_RACE, settlement->mainRace);
+
+                for (unsigned int i = 0; i < PLACE_ENUM_COUNT; ++i) {
+                    Place* functionalPlace = settlement->functionalPlaceList[i];
+                    if (functionalPlace != NULL) {
+                        void* placeNode = xmlMngr.CreateChild(settlementNode, XML_NODE_PLACE);
+                        xmlMngr.SetAttribute(placeNode, XML_ATTR_NAME, functionalPlace->placeName);
+                        if (functionalPlace->owner != NULL) {
+                            xmlMngr.SetAttribute(placeNode, XML_ATTR_OWNER_ID, functionalPlace->owner->charaId);
+                        }
+                    }
+                }
+
+                for (vector<House*>::iterator iter = settlement->residenceList.begin();
+                iter != settlement->residenceList.end(); ++iter) {
+                    House* residence = *iter;
+                    if (residence != NULL) {
+                        void* placeNode = xmlMngr.CreateChild(settlementNode, XML_NODE_PLACE);
+                        xmlMngr.SetAttribute(placeNode, XML_ATTR_NAME, residence->placeName);
+                        if (residence->owner != NULL) {
+                            xmlMngr.SetAttribute(placeNode, XML_ATTR_OWNER_ID, residence->owner->charaId);
+                        }
+                    }
+                }
             }   
         }
     }
@@ -250,12 +273,47 @@ bool WorldMap::SaveWorldToXml()
         xmlMngr.SetAttribute(charaNode, XML_ATTR_ID, iter->first);
 
         Character* chara = iter->second;
-        xmlMngr.SetAttribute(charaNode, XML_ATTR_GENDER, chara->charaGender);
-        xmlMngr.SetAttribute(charaNode, XML_ATTR_TITLE, chara->socialStatus.nobleTitle);
-        xmlMngr.SetAttribute(charaNode, XML_ATTR_NAME, chara->selfName);
         xmlMngr.SetAttribute(charaNode, XML_ATTR_FAMILY_NAME, chara->familyName);
+        xmlMngr.SetAttribute(charaNode, XML_ATTR_NAME, chara->selfName);
+        xmlMngr.SetAttribute(charaNode, XML_ATTR_GENDER, chara->charaGender);
         xmlMngr.SetAttribute(charaNode, XML_ATTR_AGE, chara->charaAge);
         xmlMngr.SetAttribute(charaNode, XML_ATTR_RACE, chara->charaRace);
+
+        void* socialstatusNode = xmlMngr.CreateChild(charaNode, XML_NODE_SOCIALSTATUS);
+        xmlMngr.SetAttribute(socialstatusNode, XML_ATTR_TITLE, chara->socialStatus.nobleTitle);
+        xmlMngr.SetAttribute(socialstatusNode, XML_ATTR_JOB, chara->socialStatus.job);
+
+        void* appearanceNode = xmlMngr.CreateChild(charaNode, XML_NODE_APPEARANCE);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_PRETTY_LEVEL, chara->appearance.prettyLevel);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_FITNESS_LEVEL, chara->appearance.fitnessLevel);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_SKIN_COLOR, chara->appearance.skinColor);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_HAIR_COLOR, chara->appearance.hairColor);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_HAIR_STYLE, chara->appearance.hairStyle);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_EYE_COLOR, chara->appearance.eyeColor);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_EYE_SIZE, chara->appearance.eyeSize);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_EYE_DEPTH, chara->appearance.eyeDepth);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_EAR_STYLE, chara->appearance.earStyle);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_NOSE_BRIDGE_SIZE, chara->appearance.noseBridgeSize);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_NOSE_WING_SIZE, chara->appearance.noseWingSize);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_MOUTH_WIDTH, chara->appearance.mouthWidth);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_LIPS_THICKNESS, chara->appearance.lipsThickness);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_FACE_LENGTH, chara->appearance.faceLength);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_FACE_WIDTH, chara->appearance.faceWidth);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_EAR_STYLE, chara->appearance.earStyle);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_BEARD, chara->appearance.beard);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_STRONG_LEVEL, chara->appearance.strongLevel);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XSIZE, chara->appearance.xSize);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XRAISE, chara->appearance.xRaise);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XTSIZE, chara->appearance.xtSize);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XTDARKNESS, chara->appearance.xtDarkness);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_TSIZE, chara->appearance.tSize);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_TRAISE, chara->appearance.tRaise);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_WAISTSIZE, chara->appearance.waistSize);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_SKIN_SMOOTH, chara->appearance.skinSmooth);
+
+        void* personalityNode = xmlMngr.CreateChild(charaNode, XML_NODE_PERSONALITY);
+        
+        void* abilityNode = xmlMngr.CreateChild(charaNode, XML_NODE_ABILITY);
     }
 
     return xmlMngr.Save();

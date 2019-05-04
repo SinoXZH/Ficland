@@ -33,6 +33,7 @@ protected:
     void RandomInitChildren(Character* father, Character* mother);
 
 public:
+    string familyName;
     Character* husband;
     Character* wife;
     vector<Character*> concubines;

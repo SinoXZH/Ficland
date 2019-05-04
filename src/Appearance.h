@@ -14,22 +14,23 @@ typedef enum {
 }SKIN_COLOR;
 
 typedef enum {
-    HAIR_BLACK,
-    HAIR_BLOND,
-    HAIR_BROWN,
-    HAIR_RED,
-    HAIR_SILVER,
-    HAIR_GREY
+    HAIR_COLOR_BLACK,
+    HAIR_COLOR_BLOND,
+    HAIR_COLOR_BROWN,
+    HAIR_COLOR_RED,
+    HAIR_COLOR_SILVER,
+    HAIR_COLOR_GREY
 }HAIR_COLOR;
 
 typedef enum {
-    HAIR_SHORT_CUT,
-    HAIR_PASS_EAR,
-    HAIR_OVER_SHOWDER,
-    HAIR_HORSE_TAIL,
-    HAIR_GIRL_BRAID,
-    HAIR_WOMAN_BUN,
-    HAIR_NOBLE_LADY
+    HAIR_STYLE_BALD,
+    HAIR_STYLE_SHORT_CUT,
+    HAIR_STYLE_PASS_EAR,
+    HAIR_STYLE_OVER_SHOWDER,
+    HAIR_STYLE_HORSE_TAIL,
+    HAIR_STYLE_GIRL_BRAID,
+    HAIR_STYLE_WOMAN_BUN,
+    HAIR_STYLE_NOBLE_LADY
 }HAIR_STYLE;
 
 typedef enum {
@@ -66,8 +67,8 @@ public:
 
 public:
     int prettyLevel;
+    int fitnessLevel;
     unsigned int hight;
-    int strongLevel;
     int fatLevel;
     int legLength;
     SKIN_COLOR skinColor;
@@ -75,8 +76,10 @@ public:
     HAIR_COLOR hairColor;
     HAIR_STYLE hairStyle;
     EYE_COLOR eyeColor;
-    EAR_STYLE earStyle;
+    int eyeSize;
     int eyeDepth;
+    EAR_STYLE earStyle;
+    
     int noseBridgeSize;
     int noseWingSize;
     int mouthWidth;
@@ -86,10 +89,13 @@ public:
 
     //male
     BEARD_ENUM beard;
+    int strongLevel;
 
     //female
     int xSize;
     int xRaise;
+    int xtSize;
+    int xtDarkness;
     int tSize;
     int tRaise;
     int waistSize;

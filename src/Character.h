@@ -17,6 +17,7 @@ public:
 public:
 
     void InitChara(
+        const string& houseName = "",
         TITLE_ENUM title = TITLE_NONE,
         JOB_ENUM job = JOB_NONE, 
         RACE_ENUM race = RACE_UNKNOWN, 
