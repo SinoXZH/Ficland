@@ -286,6 +286,9 @@ bool WorldMap::SaveWorldToXml()
         void* appearanceNode = xmlMngr.CreateChild(charaNode, XML_NODE_APPEARANCE);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_PRETTY_LEVEL, chara->appearance.prettyLevel);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_FITNESS_LEVEL, chara->appearance.fitnessLevel);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_HIGHT, chara->appearance.hight);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_FAT, chara->appearance.fatLevel);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_LEGLENGTH, chara->appearance.legLength);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_SKIN_COLOR, chara->appearance.skinColor);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_HAIR_COLOR, chara->appearance.hairColor);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_HAIR_STYLE, chara->appearance.hairStyle);
@@ -301,7 +304,6 @@ bool WorldMap::SaveWorldToXml()
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_FACE_WIDTH, chara->appearance.faceWidth);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_EAR_STYLE, chara->appearance.earStyle);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_BEARD, chara->appearance.beard);
-        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_STRONG_LEVEL, chara->appearance.strongLevel);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XSIZE, chara->appearance.xSize);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XRAISE, chara->appearance.xRaise);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XTSIZE, chara->appearance.xtSize);

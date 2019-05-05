@@ -16,7 +16,7 @@ Character::~Character()
 }
 
 void Character::InitChara(const string& houseName, TITLE_ENUM title, JOB_ENUM job, 
-RACE_ENUM race, unsigned int age, GENDER_ENUM gender, unsigned int appranceScore)
+RACE_ENUM race, unsigned int age, GENDER_ENUM gender, int appranceScore)
 {
     if (houseName.empty()) {
         familyName = TextManager::GetInstance()->GetRandomOrientalFamilyName();
@@ -30,7 +30,7 @@ RACE_ENUM race, unsigned int age, GENDER_ENUM gender, unsigned int appranceScore
     unsigned int randNum = 0;
 
     if (race == RACE_UNKNOWN) {
-        randNum = GetRandomNum(0, RACE_COUNT - 1);
+        randNum = GetRandomUint(0, RACE_COUNT - 1);
         race = (RACE_ENUM)randNum;
     }
     charaRace = race;
@@ -64,13 +64,13 @@ unsigned int Character::RandomInitAge(JOB_ENUM job)
     switch (job)
     {
     case JOB_LANDLORD:
-        return GetNormalDistributionUnsignedNum(LANDLORD_EVERAGE_AGE, sd);
+        return GetNormalDistributionUint(LANDLORD_EVERAGE_AGE, sd);
     case JOB_ACADEMY_PRESIDENT:
-        return GetNormalDistributionUnsignedNum(PRESIDENT_EVERAGE_AGE, sd);
+        return GetNormalDistributionUint(PRESIDENT_EVERAGE_AGE, sd);
     case JOB_ACADEMY_TEACHER:
-        return GetNormalDistributionUnsignedNum(TEACHER_EVERAGE_AGE, sd);
+        return GetNormalDistributionUint(TEACHER_EVERAGE_AGE, sd);
     case JOB_ACADEMY_STUDENT:
-        return GetNormalDistributionUnsignedNum(STUDENT_EVERAGE_AGE, sd);
+        return GetNormalDistributionUint(STUDENT_EVERAGE_AGE, sd);
     default:
         break;
     }
@@ -80,7 +80,7 @@ unsigned int Character::RandomInitAge(JOB_ENUM job)
 
 GENDER_ENUM Character::RandomInitGender(JOB_ENUM job)
 {
-    unsigned int randNum = GetRandomNum(1,10);
+    unsigned int randNum = GetRandomUint(1,10);
 
     switch (job)
     {
@@ -113,11 +113,22 @@ GENDER_ENUM Character::RandomInitGender(JOB_ENUM job)
 
 GENDER_ENUM Character::RandomInitGender()
 {
-    unsigned int randNum = GetRandomNum(0, 1);
+    unsigned int randNum = GetRandomUint(0, 1);
     return (GENDER_ENUM)randNum;
 }
 
-unsigned int Character::RandomInitAppearanceScore()
+int Character::RandomInitAppearanceScore()
 {
-    return 0;
+    int randMean = 0;
+    unsigned int randsd = 20;
+
+    randMean += (10 * (unsigned int)socialStatus.nobleTitle);
+    if (socialStatus.job == JOB_CONCUBINE) {
+        randMean += 50;
+    }
+    else if (socialStatus.job == JOB_ACADEMY_TEACHER) {
+        randMean += 20;
+    }
+
+    return GetNormalDistributionInt(randMean, randsd);
 }

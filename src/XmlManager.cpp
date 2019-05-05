@@ -90,7 +90,7 @@ bool XmlManager::SetAttribute(const void* node, const string& attrName, const st
     return true;
 }
 
-bool XmlManager::SetAttribute(const void* node, const string& attrName, unsigned int attrValue)
+bool XmlManager::SetAttribute(const void* node, const string& attrName, int attrValue)
 {
     if (node == NULL) {
         return false;

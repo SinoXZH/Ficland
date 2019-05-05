@@ -80,7 +80,7 @@ string TextManager::GetRandomOrientalFamilyName()
         return "";
     }
 
-    unsigned int randNum = GetRandomNum(0, orientalFamilyNameList.size() - 1);
+    unsigned int randNum = GetRandomUint(0, orientalFamilyNameList.size() - 1);
     return orientalFamilyNameList[randNum];
 }
 
@@ -96,19 +96,19 @@ string TextManager::GetRandomOrientalName(GENDER_ENUM gender)
     
     while (trytimes < 10000) {
         if (gender == GENDER_MALE) {
-            unsigned int firstNum = GetRandomNum(0, orientalMaleNameList.size() - 1);
+            unsigned int firstNum = GetRandomUint(0, orientalMaleNameList.size() - 1);
             ret += orientalMaleNameList[firstNum];
-            unsigned int oneOrTwo = GetRandomNum(0, 9);
+            unsigned int oneOrTwo = GetRandomUint(0, 9);
             if (oneOrTwo < 7) {
-                unsigned int secondNum = GetRandomNum(0, orientalMaleNameList.size() - 1);
+                unsigned int secondNum = GetRandomUint(0, orientalMaleNameList.size() - 1);
                 ret += orientalMaleNameList[secondNum];
             }
         } else if (gender == GENDER_FEMALE) {
-            unsigned int firstNum = GetRandomNum(0, orientalFemaleNameList.size() - 1);
+            unsigned int firstNum = GetRandomUint(0, orientalFemaleNameList.size() - 1);
             ret += orientalFemaleNameList[firstNum];
-            unsigned int oneOrTwo = GetRandomNum(0, 9);
+            unsigned int oneOrTwo = GetRandomUint(0, 9);
             if (oneOrTwo < 7) {
-                unsigned int secondNum = GetRandomNum(0, orientalMaleNameList.size() - 1);
+                unsigned int secondNum = GetRandomUint(0, orientalMaleNameList.size() - 1);
                 ret += orientalFemaleNameList[secondNum];
             }
         } else {

@@ -63,9 +63,13 @@ vector<string> StringSplit(const string&str, const string& seperator);
 
 bool isFileExists(const string& filepath);
 
-unsigned int GetNormalDistributionUnsignedNum(unsigned int mean, unsigned int sd);
+unsigned int GetNormalDistributionUint(unsigned int mean, unsigned int sd);
 
-unsigned int GetRandomNum(unsigned int min, unsigned int max);
+int GetNormalDistributionInt(int mean, unsigned int sd);
+
+unsigned int GetRandomUint(unsigned int min, unsigned int max);
+
+int GetRandomInt(int min, int max);
 
 #define min(a, b) (a < b ? a : b)
 #define max(a, b) (a > b ? a : b)

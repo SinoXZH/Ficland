@@ -41,17 +41,17 @@ Settlement::~Settlement()
 
 bool Settlement::InitSettlement()
 {
-    wealth = GetNormalDistributionUnsignedNum(50, 10);
+    wealth = GetNormalDistributionUint(50, 10);
     switch (settlementType)
     {
     case SETTLEMENT_TOWN:
-        population = GetNormalDistributionUnsignedNum(10000, 5000);
+        population = GetNormalDistributionUint(10000, 5000);
         break;
     case SETTLEMENT_CITY:
-        population = GetNormalDistributionUnsignedNum(100000, 50000);
+        population = GetNormalDistributionUint(100000, 50000);
         break;
     case SETTLEMENT_CAPITAL:
-        population = GetNormalDistributionUnsignedNum(500000, 100000);
+        population = GetNormalDistributionUint(500000, 100000);
         break;
     default:
         break;
@@ -96,10 +96,10 @@ bool Settlement::InitSettlement()
         residenceList.push_back(teacherHouse);
     }
 
-    unsigned int citizenCount = 30;
+    unsigned int citizenCount = 20;
     for (unsigned int i = 0; i < citizenCount; ++i) {
         Character* citizen = WorldMap::GetInstance()->NewCharacter();
-        unsigned int citizenAge = GetNormalDistributionUnsignedNum(38, 3);
+        unsigned int citizenAge = GetNormalDistributionUint(38, 3);
         citizen->InitChara("", TITLE_NONE, JOB_CITIZEN, mainRace, citizenAge);
         House* citizenHouse = new House();
         citizenHouse->owner = citizen;

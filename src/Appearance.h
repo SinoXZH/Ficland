@@ -25,10 +25,10 @@ typedef enum {
 typedef enum {
     HAIR_STYLE_BALD,
     HAIR_STYLE_SHORT_CUT,
-    HAIR_STYLE_PASS_EAR,
-    HAIR_STYLE_OVER_SHOWDER,
     HAIR_STYLE_HORSE_TAIL,
     HAIR_STYLE_GIRL_BRAID,
+    HAIR_STYLE_PASS_EAR,
+    HAIR_STYLE_OVER_SHOWDER,
     HAIR_STYLE_WOMAN_BUN,
     HAIR_STYLE_NOBLE_LADY
 }HAIR_STYLE;
@@ -63,7 +63,7 @@ public:
     ~Appearance();
 
 public:
-    void RandomInitAppearance(RACE_ENUM race, GENDER_ENUM gender, unsigned int age, unsigned int score);
+    void RandomInitAppearance(RACE_ENUM race, GENDER_ENUM gender, unsigned int age, int score);
 
 public:
     int prettyLevel;
@@ -89,14 +89,13 @@ public:
 
     //male
     BEARD_ENUM beard;
-    int strongLevel;
 
     //female
-    int xSize;
+    unsigned int xSize;
     int xRaise;
-    int xtSize;
+    unsigned int xtSize;
     int xtDarkness;
-    int tSize;
+    unsigned int tSize;
     int tRaise;
     int waistSize;
     int skinSmooth;

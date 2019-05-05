@@ -23,7 +23,7 @@ public:
         RACE_ENUM race = RACE_UNKNOWN, 
         unsigned int age = 0, 
         GENDER_ENUM gender = GENDER_UNKNOWN
-        , unsigned int appranceScore = 0);
+        , int appranceScore = 0);
 
 public:
     static GENDER_ENUM RandomInitGender();
@@ -32,7 +32,7 @@ protected:
     unsigned int RandomInitAge(JOB_ENUM job);
     GENDER_ENUM RandomInitGender(JOB_ENUM job);
 
-    unsigned int RandomInitAppearanceScore();
+    int RandomInitAppearanceScore();
 
 public:
     unsigned int charaId;
