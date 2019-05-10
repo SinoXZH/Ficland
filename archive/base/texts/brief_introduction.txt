@@ -1,0 +1,2 @@
+[0:replace:family_name][1:replace:self_name][2:replace:noble_title], [3:replace:age]岁，[4:condition:has_manor:1]{是[5:replace:settlement]城的领主,}职业[6:replace:job]。
+身高[7:replace:hight]。
