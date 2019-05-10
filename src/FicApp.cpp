@@ -71,6 +71,7 @@ bool FicApp::Design()
     cmdList.push_back("save archive to xml");
     cmdList.push_back("load xml to archive");
     cmdList.push_back("initialize the world");
+    cmdList.push_back("get character introduction");
     
     while (true) {
         
@@ -100,6 +101,11 @@ bool FicApp::Design()
         }
         else if (input == "initialize the world") {
             if (InitWorld() == false) {
+                return false;
+            }
+        }
+        else if (input == "get character introduction") {
+            if (GetCharaIntroduction() == false) {
                 return false;
             }
         }
@@ -147,5 +153,12 @@ bool FicApp::LoadXmlToArchive()
 bool FicApp::InitWorld()
 {
     return curArchive.InitWorld();
+}
+
+bool FicApp::GetCharaIntroduction()
+{
+    Output("Please input character ID:");
+    unsigned int id = InputUint();
+    return curArchive.GetCharaIntroduction(id);
 }
 

@@ -1,6 +1,7 @@
 #ifndef __ABILITY_H__
 #define __ABILITY_H__
 
+#include "CharaDefine.h"
 #include "SocialStatus.h"
 
 
@@ -10,9 +11,8 @@ public:
     ~Ability();
 
 public:
-    void RandomInitAbility(unsigned int score);
 
-    void RandomInitAbility(JOB_ENUM job);
+    void RandomInitAbility(const SocialStatus& sStatus, unsigned int age, GENDER_ENUM gender);
 
 public:
     unsigned int healthPoint;
@@ -21,12 +21,15 @@ public:
 
     unsigned int intelligence;
     unsigned int strength;
-    unsigned int fightLevel;
-    unsigned int shootLevel;
-    unsigned int magicLevel;
 
-    unsigned int managerLevel;
-    unsigned int cookLevel;
+    unsigned int fightLevel;
+    unsigned int archLevel;
+    unsigned int magicLevel;
+    unsigned int cureLevel;
+
+    unsigned int secHardness;
+    unsigned int secTimelen;
+    unsigned int secSkill;
 };
 
 #endif

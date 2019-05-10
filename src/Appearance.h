@@ -89,6 +89,7 @@ public:
 
     //male
     BEARD_ENUM beard;
+    unsigned int ckSize;
 
     //female
     unsigned int xSize;

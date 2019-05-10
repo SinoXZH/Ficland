@@ -19,7 +19,8 @@ public:
     void InitChara(
         const string& houseName = "",
         TITLE_ENUM title = TITLE_NONE,
-        JOB_ENUM job = JOB_NONE, 
+        JOB_ENUM job = JOB_NONE,
+        unsigned int statusScore = 0,
         RACE_ENUM race = RACE_UNKNOWN, 
         unsigned int age = 0, 
         GENDER_ENUM gender = GENDER_UNKNOWN
@@ -47,7 +48,12 @@ public:
     Personality personality;
     Ability ability;
 
-    map<unsigned int, Relationship> relatedCharaMap;
+    Character* charaSpouse;
+    vector<Character*> charaConcubines;
+    Character* charaFather;
+    Character* charaMother;
+    vector<Character*> charaChildren;
+    map<Character*, Relationship> relatedCharaMap;
 };
 
 #endif //__CHARACTER_H__

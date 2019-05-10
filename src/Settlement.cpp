@@ -59,12 +59,15 @@ bool Settlement::InitSettlement()
 
     InitFuncPlace();
 
+    stName = "³¤°²³Ç";
+
     functionalPlaceList[PLACE_ACADEMY]->functionalGroup = new AcademyGroup();
     AcademyGroup* acdmyGroup = (AcademyGroup*)functionalPlaceList[PLACE_ACADEMY]->functionalGroup;
 
     //construct landlord character
     landLord = WorldMap::GetInstance()->NewCharacter();
-    landLord->InitChara("", GetLordTitleFromPopulation(), JOB_LANDLORD, mainRace);
+    landLord->InitChara("", GetLordTitleFromPopulation(), JOB_LANDLORD, 0, mainRace);
+    landLord->socialStatus.manorName = stName;
 
     //construct the lord house
     functionalPlaceList[PLACE_LORD_MANSION]->owner = landLord;
@@ -72,21 +75,20 @@ bool Settlement::InitSettlement()
     functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->SetGroupLeader(landLord);
     functionalPlaceList[PLACE_LORD_MANSION]->functionalGroup->RandomInitGroupMembers();
 
-    Character* president = WorldMap::GetInstance()->NewCharacter();
-    president->InitChara("", TITLE_MARQUIS, JOB_ACADEMY_PRESIDENT, mainRace);
-    acdmyGroup->SetGroupLeader(president);
-    House* presidentHouse = new House();
-    presidentHouse->owner = president;
-    functionalPlaceList[PLACE_ACADEMY]->owner = president;
-    presidentHouse->functionalGroup = new Family();
-    presidentHouse->functionalGroup->SetGroupLeader(president);
-    presidentHouse->functionalGroup->RandomInitGroupMembers();
-    residenceList.push_back(presidentHouse);
+    Character* acdmyPresident = WorldMap::GetInstance()->NewCharacter();
+    acdmyPresident->InitChara("", TITLE_COUNT, JOB_ACADEMY_PRESIDENT, 0, mainRace);
+    acdmyGroup->SetGroupLeader(acdmyPresident);
+    House* acdmyPresidentHouse = new House();
+    acdmyPresidentHouse->owner = acdmyPresident;
+    functionalPlaceList[PLACE_ACADEMY]->owner = acdmyPresident;
+    acdmyPresidentHouse->functionalGroup = new Family();
+    acdmyPresidentHouse->functionalGroup->SetGroupLeader(acdmyPresident);
+    acdmyPresidentHouse->functionalGroup->RandomInitGroupMembers();
+    residenceList.push_back(acdmyPresidentHouse);
 
-    unsigned int teacherCount = 12;
-    for (unsigned int i = 0; i < teacherCount; ++i) {
+    for (unsigned int i = 0; i < 10; ++i) {
         Character* teacher = WorldMap::GetInstance()->NewCharacter();
-        teacher->InitChara("", TITLE_BARON, JOB_ACADEMY_TEACHER, mainRace);
+        teacher->InitChara("", TITLE_BARON, JOB_ACADEMY_MAGIC_TEACHER, 0, mainRace);
         acdmyGroup->teacherList.push_back(teacher);
         House* teacherHouse = new House();
         teacherHouse->owner = teacher;
@@ -96,11 +98,72 @@ bool Settlement::InitSettlement()
         residenceList.push_back(teacherHouse);
     }
 
-    unsigned int citizenCount = 20;
-    for (unsigned int i = 0; i < citizenCount; ++i) {
+    for (unsigned int i = 0; i < 10; ++i) {
+        Character* teacher = WorldMap::GetInstance()->NewCharacter();
+        teacher->InitChara("", TITLE_BARON, JOB_ACADEMY_FIGHTER_TEACHER, 0, mainRace);
+        acdmyGroup->teacherList.push_back(teacher);
+        House* teacherHouse = new House();
+        teacherHouse->owner = teacher;
+        teacherHouse->functionalGroup = new Family();
+        teacherHouse->functionalGroup->SetGroupLeader(teacher);
+        teacherHouse->functionalGroup->RandomInitGroupMembers();
+        residenceList.push_back(teacherHouse);
+    }
+
+    for (unsigned int i = 0; i < 10; ++i) {
+        Character* teacher = WorldMap::GetInstance()->NewCharacter();
+        teacher->InitChara("", TITLE_BARON, JOB_ACADEMY_ARCHER_TEACHER, 0, mainRace);
+        acdmyGroup->teacherList.push_back(teacher);
+        House* teacherHouse = new House();
+        teacherHouse->owner = teacher;
+        teacherHouse->functionalGroup = new Family();
+        teacherHouse->functionalGroup->SetGroupLeader(teacher);
+        teacherHouse->functionalGroup->RandomInitGroupMembers();
+        residenceList.push_back(teacherHouse);
+    }
+
+    functionalPlaceList[PLACE_HOSPITAL]->functionalGroup = new HospitalGroup();
+    HospitalGroup* hospitalGroup = (HospitalGroup*)functionalPlaceList[PLACE_HOSPITAL]->functionalGroup;
+
+    Character* hospitalPresident = WorldMap::GetInstance()->NewCharacter();
+    hospitalPresident->InitChara("", TITLE_COUNT, JOB_HOSPITAL_PRESIDENT, 0, mainRace);
+    hospitalGroup->SetGroupLeader(hospitalPresident);
+    House* hospitalPresidentHouse = new House();
+    hospitalPresidentHouse->owner = hospitalPresident;
+    functionalPlaceList[PLACE_HOSPITAL]->owner = hospitalPresident;
+    hospitalPresidentHouse->functionalGroup = new Family();
+    hospitalPresidentHouse->functionalGroup->SetGroupLeader(hospitalPresident);
+    hospitalPresidentHouse->functionalGroup->RandomInitGroupMembers();
+    residenceList.push_back(hospitalPresidentHouse);
+
+    for (unsigned int i = 0; i < 10; ++i) {
+        Character* doctor = WorldMap::GetInstance()->NewCharacter();
+        doctor->InitChara("", TITLE_BARON, JOB_HOSPITAL_DOCTOR, 0, mainRace);
+        hospitalGroup->doctorList.push_back(doctor);
+        House* doctorHouse = new House();
+        doctorHouse->owner = doctor;
+        doctorHouse->functionalGroup = new Family();
+        doctorHouse->functionalGroup->SetGroupLeader(doctor);
+        doctorHouse->functionalGroup->RandomInitGroupMembers();
+        residenceList.push_back(doctorHouse);
+    }
+
+    for (unsigned int i = 0; i < 20; ++i) {
+        Character* nurse = WorldMap::GetInstance()->NewCharacter();
+        nurse->InitChara("", TITLE_NONE, JOB_HOSPITAL_NURSE, 0, mainRace);
+        hospitalGroup->doctorList.push_back(nurse);
+        House* nurseHouse = new House();
+        nurseHouse->owner = nurse;
+        nurseHouse->functionalGroup = new Family();
+        nurseHouse->functionalGroup->SetGroupLeader(nurse);
+        nurseHouse->functionalGroup->RandomInitGroupMembers();
+        residenceList.push_back(nurseHouse);
+    }
+
+    for (unsigned int i = 0; i < 20; ++i) {
         Character* citizen = WorldMap::GetInstance()->NewCharacter();
         unsigned int citizenAge = GetNormalDistributionUint(38, 3);
-        citizen->InitChara("", TITLE_NONE, JOB_CITIZEN, mainRace, citizenAge);
+        citizen->InitChara("", TITLE_NONE, JOB_CITIZEN, 0, mainRace, citizenAge);
         House* citizenHouse = new House();
         citizenHouse->owner = citizen;
         citizenHouse->functionalGroup = new Family();

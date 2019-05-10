@@ -19,6 +19,7 @@ public:
     bool SaveArchiveToXml();
     bool LoadXmlToArchive(const string& fileName);
     bool InitWorld();
+    bool GetCharaIntroduction(unsigned int id);
 
 public:
     static string arcRootDir;

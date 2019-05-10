@@ -63,3 +63,8 @@ bool Archive::InitWorld()
     TextManager::InitInstance(textPath);
     return WorldMap::GetInstance()->InitWorldMap();
 }
+
+bool Archive::GetCharaIntroduction(unsigned int id)
+{
+    return WorldMap::GetInstance()->GetCharaIntroduction(id);
+}

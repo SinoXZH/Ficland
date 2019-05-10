@@ -4,6 +4,9 @@
     <Filter Include="src">
       <UniqueIdentifier>{b2063b31-2de4-4524-a5b2-8d596e6a5c6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="files">
+      <UniqueIdentifier>{25702279-723e-40cb-a70f-3e872b50b375}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Archive.cpp">
@@ -134,5 +137,19 @@
     <ClInclude Include="Relationship.h">
       <Filter>src</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\archive\base\texts\oriental_family_name.txt">
+      <Filter>files</Filter>
+    </Text>
+    <Text Include="..\archive\base\texts\oriental_name_female.txt">
+      <Filter>files</Filter>
+    </Text>
+    <Text Include="..\archive\base\texts\oriental_name_male.txt">
+      <Filter>files</Filter>
+    </Text>
+    <Text Include="..\archive\base\texts\brief_introduction.txt">
+      <Filter>files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

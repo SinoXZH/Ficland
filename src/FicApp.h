@@ -19,6 +19,7 @@ protected:
     bool SaveArchiveToXml();
     bool LoadXmlToArchive();
     bool InitWorld();
+    bool GetCharaIntroduction();
 
 private:
     Archive curArchive;

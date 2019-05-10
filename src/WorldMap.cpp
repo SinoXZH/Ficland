@@ -1,6 +1,8 @@
 #include "WorldMap.h"
 #include "CsvParser.h"
 #include "XmlManager.h"
+#include "TextManager.h"
+
 
 unsigned int WorldMap::curRegionId = 0;
 unsigned int WorldMap::curCharaId = 0;
@@ -184,6 +186,21 @@ string WorldMap::NumCoordToString(unsigned int x, unsigned int y)
     return ret;
 }
 
+string WorldMap::UniteCharaIdToStringByComma(vector<Character*> charaVector)
+{
+    string ret;
+    for (vector<Character*>::iterator iter = charaVector.begin(); iter != charaVector.end(); ++iter) {
+        if (ret.empty()) {
+            FormatString(ret, "%d", (*iter)->charaId);
+        }
+        else {
+            FormatString(ret, "%s,%d", ret.c_str(), (*iter)->charaId);
+        }
+    }
+
+    return ret;
+}
+
 bool WorldMap::SaveWorldToXml()
 {
     XmlManager xmlMngr;
@@ -282,6 +299,7 @@ bool WorldMap::SaveWorldToXml()
         void* socialstatusNode = xmlMngr.CreateChild(charaNode, XML_NODE_SOCIALSTATUS);
         xmlMngr.SetAttribute(socialstatusNode, XML_ATTR_TITLE, chara->socialStatus.nobleTitle);
         xmlMngr.SetAttribute(socialstatusNode, XML_ATTR_JOB, chara->socialStatus.job);
+        xmlMngr.SetAttribute(socialstatusNode, XML_ATTR_STATUS_SCORE, chara->socialStatus.statusScore);
 
         void* appearanceNode = xmlMngr.CreateChild(charaNode, XML_NODE_APPEARANCE);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_PRETTY_LEVEL, chara->appearance.prettyLevel);
@@ -304,6 +322,7 @@ bool WorldMap::SaveWorldToXml()
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_FACE_WIDTH, chara->appearance.faceWidth);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_EAR_STYLE, chara->appearance.earStyle);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_BEARD, chara->appearance.beard);
+        xmlMngr.SetAttribute(appearanceNode, XML_ATTR_CKSIZE, chara->appearance.ckSize);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XSIZE, chara->appearance.xSize);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XRAISE, chara->appearance.xRaise);
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_XTSIZE, chara->appearance.xtSize);
@@ -314,8 +333,44 @@ bool WorldMap::SaveWorldToXml()
         xmlMngr.SetAttribute(appearanceNode, XML_ATTR_SKIN_SMOOTH, chara->appearance.skinSmooth);
 
         void* personalityNode = xmlMngr.CreateChild(charaNode, XML_NODE_PERSONALITY);
+        xmlMngr.SetAttribute(personalityNode, XML_ATTR_OPENNESS, chara->personality.openness);
+        xmlMngr.SetAttribute(personalityNode, XML_ATTR_CONSCIENTIOUSNESS, chara->personality.conscientiousness);
+        xmlMngr.SetAttribute(personalityNode, XML_ATTR_EXTRAVERSION, chara->personality.extraversion);
+        xmlMngr.SetAttribute(personalityNode, XML_ATTR_AGREEABLENESS, chara->personality.agreeableness);
+        xmlMngr.SetAttribute(personalityNode, XML_ATTR_NEUROTICISM, chara->personality.neuroticism);
+        xmlMngr.SetAttribute(personalityNode, XML_ATTR_SECDESIRE, chara->personality.secDesire);
+        xmlMngr.SetAttribute(personalityNode, XML_ATTR_SECDOM, chara->personality.secDomorsub);
         
         void* abilityNode = xmlMngr.CreateChild(charaNode, XML_NODE_ABILITY);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_HEALTHPOINT, chara->ability.healthPoint);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_STAMINA, chara->ability.stamina);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_MANA, chara->ability.mana);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_INTELLIGENCE, chara->ability.intelligence);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_STRENTH, chara->ability.strength);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_FIGHTLEVEL, chara->ability.fightLevel);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_ARCHLEVEL, chara->ability.archLevel);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_MAGICLEVEL, chara->ability.magicLevel);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_CURELEVEL, chara->ability.cureLevel);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_SECSKILL, chara->ability.secSkill);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_SECHARD, chara->ability.secHardness);
+        xmlMngr.SetAttribute(abilityNode, XML_ATTR_SECTIME, chara->ability.secTimelen);
+
+        void* relationNode = xmlMngr.CreateChild(charaNode, XML_NODE_RELATIONSHIP);
+        if (chara->charaFather != NULL) {
+            xmlMngr.SetAttribute(relationNode, XML_ATTR_FATHER, chara->charaFather->charaId);
+        }
+        if (chara->charaMother != NULL) {
+            xmlMngr.SetAttribute(relationNode, XML_ATTR_MOTHER, chara->charaMother->charaId);
+        }
+        if (chara->charaSpouse != NULL) {
+            xmlMngr.SetAttribute(relationNode, XML_ATTR_SPOUSE, chara->charaSpouse->charaId);
+        }
+        if (!chara->charaConcubines.empty()) {
+            xmlMngr.SetAttribute(relationNode, XML_ATTR_CONCUBINES, UniteCharaIdToStringByComma(chara->charaConcubines));
+        }
+        if (!chara->charaChildren.empty()) {
+            xmlMngr.SetAttribute(relationNode, XML_ATTR_CHILDREN, UniteCharaIdToStringByComma(chara->charaChildren));
+        }
     }
 
     return xmlMngr.Save();
@@ -454,5 +509,20 @@ Character* WorldMap::NewCharacter()
     characterMap[curCharaId] = chara;
     ++curCharaId;
     return chara;
+}
+
+bool WorldMap::GetCharaIntroduction(unsigned int id)
+{
+    map<unsigned int, Character*>::iterator iter = characterMap.find(id);
+    if (iter == characterMap.end()) {
+        return false;
+    }
+    
+    Character* chara = iter->second;
+    if (chara == NULL) {
+        return false;
+    }
+
+    return TextManager::GetInstance()->GetCharaIntroduction(chara);
 }
 

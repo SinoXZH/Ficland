@@ -4,6 +4,7 @@
 
 #include "globals.h"
 #include "CharaDefine.h"
+#include "Character.h"
 
 
 class TextManager {
@@ -17,6 +18,8 @@ public:
 
     string GetRandomOrientalName(GENDER_ENUM gender);
 
+    bool GetCharaIntroduction(Character* chara);
+
 protected:
     TextManager(const string& path);
     ~TextManager();
@@ -24,6 +27,10 @@ protected:
     bool Init();
 
     vector<string> GetStringListFromFile(const string& filepath);
+
+    string GetStringFromFile(const string& filepath);
+
+    string GetFormatText(const string& format, ...);
 
 protected:
     static TextManager* instance;
@@ -33,6 +40,8 @@ protected:
     vector<string> orientalMaleNameList;
     vector<string> orientalFemaleNameList;
     set<string> existNameSet;
+
+    string briefIntroduction;
 };
 
 

@@ -51,6 +51,10 @@ bool TextManager::Init()
     orientalFemaleNameList = GetStringListFromFile(filepath);
     PrintInfo("Oriental female name count: %d", orientalFemaleNameList.size());
 
+    filepath = textPath + PATH_SEPARATOR;
+    filepath += "brief_introduction.txt";
+    briefIntroduction = GetStringFromFile(filepath);
+
     return true;
 }
 
@@ -67,6 +71,26 @@ vector<string> TextManager::GetStringListFromFile(const string& filepath)
         string content;
         ifs >> content;
         ret.push_back(content);
+    }
+
+    ifs.close();
+
+    return ret;
+}
+
+string TextManager::GetStringFromFile(const string& filepath)
+{
+    string ret;
+    ifstream ifs;
+    ifs.open(filepath, ios_base::in);
+    if (!ifs.is_open()) {
+        return ret;
+    }
+
+    while (!ifs.eof()) {
+        string content;
+        ifs >> content;
+        ret += content;
     }
 
     ifs.close();
@@ -124,6 +148,25 @@ string TextManager::GetRandomOrientalName(GENDER_ENUM gender)
         ++trytimes;
     }
 
+    return ret;
+}
+
+bool TextManager::GetCharaIntroduction(Character* chara)
+{
+    if (chara == NULL) {
+        return false;
+    }
+
+    string text = GetFormatText(briefIntroduction, chara->familyName, chara->selfName, chara->socialStatus.GetTitleString(), 
+        chara->charaAge, (int)(chara->socialStatus.manorName.empty()), chara->socialStatus.manorName, chara->socialStatus.job);
+    Output(text);
+
+    return true;
+}
+
+string TextManager::GetFormatText(const string& format, ...)
+{
+    string ret = format;
     return ret;
 }
 

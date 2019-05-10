@@ -163,6 +163,12 @@
     <ClInclude Include="globals.h" />
     <ClInclude Include="XmlManager.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\archive\base\texts\brief_introduction.txt" />
+    <Text Include="..\archive\base\texts\oriental_family_name.txt" />
+    <Text Include="..\archive\base\texts\oriental_name_female.txt" />
+    <Text Include="..\archive\base\texts\oriental_name_male.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

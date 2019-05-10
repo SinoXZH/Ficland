@@ -51,5 +51,15 @@ public:
     vector<Character*> studentList;
 };
 
+class HospitalGroup : public Group {
+public:
+    virtual void SetGroupLeader(Character* chara);
+
+public:
+    Character* president;
+    vector<Character*> doctorList;
+    vector<Character*> nurseList;
+};
+
 #endif //__GROUP_H__
 

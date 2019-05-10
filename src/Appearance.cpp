@@ -22,6 +22,7 @@ Appearance::Appearance()
     , faceLength(0)
     , faceWidth(0)
     , beard(BEARD_NONE)
+    , ckSize(0)
     , xSize(0)
     , xRaise(0)
     , xtSize(0)
@@ -51,10 +52,10 @@ void Appearance::RandomInitAppearance(RACE_ENUM race, GENDER_ENUM gender, unsign
     }
 
     //hight
-    unsigned int mean = 175;
+    int mean = 173;
     unsigned int sd = 10;
     if (gender == GENDER_FEMALE) {
-        mean -= 12;
+        mean -= 10;
     }
     mean += (int)(fitnessLevel / 10);
     sd -= (int)(fitnessLevel / 10);
@@ -157,6 +158,8 @@ void Appearance::RandomInitAppearance(RACE_ENUM race, GENDER_ENUM gender, unsign
         else {
             beard = (BEARD_ENUM)GetRandomUint(BEARD_MOUSTACHE, BEARD_FULL);
         }
+
+        ckSize = GetNormalDistributionUint(10, 3);
     }
     else if (gender == GENDER_FEMALE) {
         //xSize
